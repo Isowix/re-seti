@@ -62,7 +62,7 @@
         <a href="#documents">Docs</a>
         <a href="#review">Review</a>
     </nav>
-    <a class="btn btn-gold btn-small header-download" href="https://github.com/Isowix/re-seti/releases/download/v1.2/RE-SETI_Proposal_Archive_v1.2.zip">
+    <a class="btn btn-gold btn-small header-download" href="https://github.com/Isowix/re-seti/releases/download/v1.2.1/RE-SETI_Proposal_Archive_v1.2.1.zip">
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
         <path d="M8 1.5v8M4.5 6.5 8 10l3.5-3.5M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -81,10 +81,10 @@
           <p class="lede">A proposal to look again at radio data that has already been recorded — the original SETI@home corpus, where it can still be read, and the public Breakthrough Listen archive — with the anomaly-detection methods of this decade.</p>
           <p class="byline">An early-stage independent proposal by Phil Rail, seeking reviewers and collaborators.</p>
           <div class="actions" id="download">
-            <a class="btn btn-gold" href="https://github.com/Isowix/re-seti/releases/download/v1.2/RE-SETI_Proposal_Archive_v1.2.zip">Download the proposal</a>
+            <a class="btn btn-gold" href="https://github.com/Isowix/re-seti/releases/download/v1.2.1/RE-SETI_Proposal_Archive_v1.2.1.zip">Download the proposal</a>
             <a class="btn btn-ghost" href="https://github.com/Isowix/re-seti/releases/latest">Latest release</a>
           </div>
-          <p class="fine">The download is the v1.2 proposal archive: the approved documents, in Markdown and PDF. It is not a science client, not a model, and not telescope data.</p>
+          <p class="fine">The download is the v1.2.1 proposal archive: the approved documents, in Markdown and PDF. It is not a science client, not a model, and not telescope data.</p>
           <dl class="status">
             <div>
               <dt>Phase</dt>
@@ -136,7 +136,7 @@
           <article class="card">
             <p class="num">02</p>
             <h3>Others have already started</h3>
-            <p>This proposal does not claim to be the first use of machine learning in radio SETI. A 2026 review of Breakthrough Listen’s first decade describes unsupervised anomaly-detection campaigns on Green Bank data, and injection-and-recovery tests as part of how those searches are checked. The open question is narrower: whether an independent, documented reprocessing still adds something: an independent re-check of earlier candidates such as the eight from Ma et al. (2023), completeness measured on every reanalyzed subset, methods compared on identical data, an open pipeline anyone can rerun, and a labelled benchmark for future telescopes.</p>
+            <p>This proposal does not claim to be the first use of machine learning in radio SETI. A 2026 review of Breakthrough Listen’s first decade describes unsupervised anomaly-detection campaigns on Green Bank data, among them the GLOBULAR clustering method of Jacobson-Bell et al. (2025), which applies HDBSCAN to turboSETI hits, and injection-and-recovery tests as part of how those searches are checked. The open question is narrower: whether an independent, documented reprocessing still adds something: an independent re-check of earlier candidates such as the eight from Ma et al. (2023), completeness measured on every reanalyzed subset, turboSETI, a β-VAE and GLOBULAR clustering compared on identical data, an open pipeline anyone can rerun, and a labelled benchmark for future telescopes.</p>
           </article>
           <article class="card">
             <p class="num">03</p>
@@ -152,6 +152,7 @@
             <li>On 20 July 2015, Breakthrough Listen was announced as a ten-year program with a stated commitment of $100&nbsp;million, and with the intention that the data be open. That commitment funded Breakthrough Listen. It is not funding for RE-SETI. <a href="https://breakthroughinitiatives.org/news/1">Breakthrough Initiatives, announcement</a>.</li>
             <li>Breakthrough Listen Data Release 1.0 was a defined public set of almost 1&nbsp;petabyte of raw and reduced data. <a href="https://doi.org/10.1088/1538-3873/ab3e82">Lebofsky et al., 2019, Publications of the Astronomical Society of the Pacific</a>.</li>
             <li>As of March 2026, Breakthrough Listen storage across telescope sites and the archive was about 42&nbsp;PB of capacity, with about 31&nbsp;PB in use. That is an inventory of their systems, not a single public download, and this proposal has no access agreement. The same paper is the source for the anomaly-detection work mentioned above. <a href="https://arxiv.org/abs/2610.07482">MacMahon and Czech, 2026, arXiv:2610.07482</a>.</li>
+            <li>GLOBULAR clustering (HDBSCAN on turboSETI hits): Jacobson-Bell et al., <cite>The Astronomical Journal</cite> 169, 206 (2025), <a href="https://doi.org/10.3847/1538-3881/adb8e7">doi:10.3847/1538-3881/adb8e7</a>.</li>
           </ol>
         </aside>
       </div>
@@ -253,7 +254,7 @@
               </div>
               <div>
                 <h4>Density clustering</h4>
-                <p>Similar signals are grouped. Points that fall outside the dense groups are kept for ranking. The notes name HDBSCAN as a concrete algorithm. The requirement is density-based clustering, not one library.</p>
+                <p>Similar signals are grouped. Points that fall outside the dense groups are kept for ranking. The notes use GLOBULAR clustering, the published method that runs HDBSCAN on turboSETI hits (Jacobson-Bell et al. 2025), and also test clustering on the learned representations. Its published trade-off, far fewer false positives but some injected signals lost, would be re-measured here.</p>
               </div>
             </div>
           </li>
@@ -369,7 +370,7 @@
           <li class="phase">
             <p class="when">Phase 2 · Months 3–6</p>
             <h3>Pipeline</h3>
-            <p>Train a variational autoencoder and a density clustering method on a pilot set. Build the injected-signal tests before any ranking is trusted.</p>
+            <p>Train a variational autoencoder and run GLOBULAR clustering on a pilot set. Build the injected-signal tests before any ranking is trusted.</p>
           </li>
           <li class="phase">
             <p class="when">Phase 3 · Months 6–9</p>
@@ -499,7 +500,7 @@
     <section class="section" id="documents" aria-labelledby="documents-title">
       <div class="wrap">
         <p class="kicker">Documents</p>
-        <h2 id="documents-title">The v1.2 archive, in the repository</h2>
+        <h2 id="documents-title">The v1.2.1 archive, in the repository</h2>
         <p class="section-intro">These are the approved documents, copied as written. Markdown opens on GitHub. Each piece also has a PDF. Short on time: start with the briefing note.</p>
         <ul class="doc-list">
           <li>
@@ -567,9 +568,9 @@
           <p>Open an issue to share review feedback. Issues on this repository are public, so leave out anything you want kept private. You will not be described on this page as a reviewer or a supporter unless you explicitly agree.</p>
           <div class="actions">
             <a class="btn btn-gold" href="https://github.com/Isowix/re-seti/issues/new?title=Review%20feedback%20on%20RE-SETI">Open an issue to share review feedback</a>
-            <a class="btn btn-ghost" href="https://github.com/Isowix/re-seti/releases/download/v1.2/RE-SETI_Proposal_Archive_v1.2.zip">Download the proposal</a>
+            <a class="btn btn-ghost" href="https://github.com/Isowix/re-seti/releases/download/v1.2.1/RE-SETI_Proposal_Archive_v1.2.1.zip">Download the proposal</a>
           </div>
-          <p class="fine">Open an issue to share review feedback. Issues are public, so post only what you are willing to have read by anyone. There is no email address for this proposal. The <a href="https://github.com/Isowix/re-seti">repository</a> and the <a href="https://github.com/Isowix/re-seti/releases/tag/v1.2">v1.2 release</a> are the record.</p>
+          <p class="fine">Open an issue to share review feedback. Issues are public, so post only what you are willing to have read by anyone. There is no email address for this proposal. The <a href="https://github.com/Isowix/re-seti">repository</a> and the <a href="https://github.com/Isowix/re-seti/releases/tag/v1.2.1">v1.2.1 release</a> are the record.</p>
         </div>
       </div>
     </section>
@@ -582,10 +583,10 @@
         <li><a href="https://github.com/Isowix/re-seti">Repository</a></li>
         <li><a href="docs/README.md">Documents</a></li>
         <li><a href="https://github.com/Isowix/re-seti/releases/latest">Latest release</a></li>
-        <li><a href="https://github.com/Isowix/re-seti/releases/download/v1.2/RE-SETI_Proposal_Archive_v1.2.zip">Download the proposal</a></li>
+        <li><a href="https://github.com/Isowix/re-seti/releases/download/v1.2.1/RE-SETI_Proposal_Archive_v1.2.1.zip">Download the proposal</a></li>
         <li><a href="https://github.com/Isowix/re-seti/issues">Issues</a></li>
       </ul>
-      <p class="colophon">Proposed by Phil Rail. Archive v1.2, 23 November 2026. No observatory, funding agency, or existing SETI program participates.</p>
+      <p class="colophon">Proposed by Phil Rail. Archive v1.2.1, 23 November 2026. No observatory, funding agency, or existing SETI program participates.</p>
     </div>
   </footer>
   <script src="assets/main.js"></script>

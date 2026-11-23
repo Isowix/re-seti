@@ -1,6 +1,6 @@
 # Statement of Intent
 
-*RE-SETI proposal archive v1.2 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.2.1 · 23 November 2026 · Prepared by Phil Rail*
 
 RE-SETI is an independent proposal. It is not affiliated with, endorsed by, or operated by UC Berkeley or its SETI@home project, the Berkeley SETI Research Center, Breakthrough Listen or the Breakthrough Initiatives, or the SETI Institute.
 

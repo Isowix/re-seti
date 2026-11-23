@@ -11,7 +11,7 @@ RE-SETI is an independent proposal and is not affiliated with or endorsed by UC 
 ## Read it
 
 - Project page: https://isowix.github.io/re-seti/
-- Download the v1.2 archive (documents only, not software): https://github.com/Isowix/re-seti/releases/download/v1.2/RE-SETI_Proposal_Archive_v1.2.zip
+- Download the v1.2.1 archive (documents only, not software): https://github.com/Isowix/re-seti/releases/download/v1.2.1/RE-SETI_Proposal_Archive_v1.2.1.zip
 - Latest release: https://github.com/Isowix/re-seti/releases/latest
 - Document index: [docs/README.md](docs/README.md)
 
@@ -25,4 +25,4 @@ Issues are public. There is no email address, and there is no science client to 
 
 The project page is a static site (`index.html` and `assets/`) published with GitHub Pages from the root of `main`. There is no build step. `.nojekyll` is present so Pages serves the files as they are.
 
-The figures on the page are original drawings. Quantities on those drawings are labeled illustrative unless a public source is linked. The approved proposal text is in `docs/`, unchanged from archive v1.2.
+The figures on the page are original drawings. Quantities on those drawings are labeled illustrative unless a public source is linked. The approved proposal text is in `docs/`, unchanged from archive v1.2.1.

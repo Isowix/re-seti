@@ -1,6 +1,6 @@
 # Phased Implementation Plan
 
-*RE-SETI proposal archive v1.2 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.2.1 · 23 November 2026 · Prepared by Phil Rail*
 
 > **Status.** Early-stage, independent proposal. Nothing in this plan has started. Phase 0 comes first; the month numbers for later phases are counted from the end of Phase 0.
 
@@ -62,7 +62,7 @@ If any criterion fails, the volunteer network is dropped or postponed, and the r
 **Purpose:** build and test the full machine-learning pipeline.
 
 - Train representation models (variational autoencoders and at least one alternative model family) on reduced snippets.
-- Implement HDBSCAN/DBSCAN-style density clustering and the combined anomaly score (document 01, section 4.3).
+- Implement GLOBULAR clustering (HDBSCAN on turboSETI hits, Jacobson-Bell et al. 2025 [5]) as the clustering method in the comparison, test density clustering on the learned representations, and build the combined anomaly score (document 01, section 4.3).
 - Build the full injected-signal suite: synthetic signals across a range of strengths, drift rates and frequencies, inserted blind into real data, including canary signals for result validation (document 05, section 6).
 - Measure recovery rates and false-positive rates against the conventional baseline, including how much the Tier 1 reduction loses.
 - Re-examine the eight Ma et al. (2023) signals of interest with the new pipeline [4].
@@ -116,3 +116,4 @@ If any criterion fails, the volunteer network is dropped or postponed, and the r
 2. Berkeley SETI Research Center, "Breakthrough Listen: 1327 Star Analysis and Public Data Release 1". https://seti.berkeley.edu/listen2019/
 3. Brzycki, B., et al., "Setigen: Simulating Radio Technosignatures for SETI", arXiv:2203.09668 (2022). https://arxiv.org/abs/2203.09668
 4. Ma, P. X., et al., "A deep-learning search for technosignatures from 820 nearby stars", *Nature Astronomy* 7, 492–502 (2023). https://doi.org/10.1038/s41550-022-01872-z
+5. Jacobson-Bell, B., et al., "Anomaly Detection and Radio-frequency Interference Classification with Unsupervised Learning in Narrowband Radio Technosignature Searches", *The Astronomical Journal* 169(4), 206 (2025). Introduces GLOBULAR clustering. https://doi.org/10.3847/1538-3881/adb8e7 · arXiv:2411.16556

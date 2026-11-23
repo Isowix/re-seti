@@ -1,6 +1,6 @@
 # RE-SETI: Formal Proposal
 
-*RE-SETI proposal archive v1.2 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.2.1 · 23 November 2026 · Prepared by Phil Rail*
 
 > **Status.** Early-stage, independent proposal. No organization formed, no funding raised, no infrastructure built. Seeking reviewers and collaborators.
 >
@@ -34,7 +34,7 @@ Breakthrough Listen was announced in July 2015 as a 10-year, US$100 million prog
 
 ### 2.3 Machine learning in SETI so far
 
-Machine learning is already being applied to this data, and this proposal builds on that work rather than claiming to be first. A notable example is Ma et al. (2023), who applied a β-convolutional variational autoencoder to 480 hours of Green Bank Telescope observations of 820 stars, cut false positives by about two orders of magnitude compared with earlier analyses of the same data, and identified eight signals of interest that were not re-detected on follow-up [9]. Since then, Breakthrough Listen teams have run unsupervised anomaly-detection and interference-classification searches over Green Bank archive data [13, 14], use the open `setigen` framework for injection-and-recovery testing [15], and report real-time deep-learning pipelines in newer instruments [8].
+Machine learning is already being applied to this data, and this proposal builds on that work rather than claiming to be first. A notable example is Ma et al. (2023), who applied a β-convolutional variational autoencoder to 480 hours of Green Bank Telescope observations of 820 stars, cut false positives by about two orders of magnitude compared with earlier analyses of the same data, and identified eight signals of interest that were not re-detected on follow-up [9]. Since then, Breakthrough Listen teams have run unsupervised anomaly-detection and interference-classification searches over Green Bank archive data [13, 14], use the open `setigen` framework for injection-and-recovery testing [15], and report real-time deep-learning pipelines in newer instruments [8]. One of these searches introduced GLOBULAR clustering (Jacobson-Bell et al. 2025), which applies HDBSCAN to turboSETI hits before event filtering. On a 97-galaxy L-band dataset it cut false-positive hits by 93.1% and false-positive events from 288 to 2, while recovering 69 of 100 injected events, against 86 for turboSETI alone [14, 17].
 
 ### 2.4 What RE-SETI would add
 
@@ -42,7 +42,7 @@ Given that work, RE-SETI has to say concretely what it adds. It does not propose
 
 1. **Independent re-verification of earlier candidates.** Re-examine the eight Ma et al. (2023) signals of interest and the top candidates of later anomaly searches [13, 14], with a different pipeline and team, using the public data, and publish the outcome for each.
 2. **Completeness measured across the whole reanalyzed set.** Injection-and-recovery tests exist in the field, but RE-SETI would report recovery rates for every data subset it processes, broken down by signal strength, drift rate and interference environment, so every "nothing found" comes with numbers.
-3. **Side-by-side methods on identical data.** Run the conventional turboSETI search, a Ma-style β-VAE, and density-clustering approaches on the same inputs, and publish where they agree and disagree.
+3. **Side-by-side methods on identical data.** Run the conventional turboSETI search, a Ma-style β-VAE, and GLOBULAR clustering (HDBSCAN on turboSETI hits [14]) on the same inputs, and publish where they agree and disagree.
 4. **Broader coverage, where data allows.** Extend beyond the 820-star Green Bank set to other public Breakthrough Listen subsets (for example the Parkes observations in Data Release 2 [7]) as access and transfer budgets permit.
 5. **An open, reproducible package.** A containerized pipeline, pinned model weights and processing logs that an outside group can rerun to reproduce any published number.
 6. **A labelled benchmark for future telescopes.** Interference labels, injected-signal sets and scored results released as training and test material for the next generation of surveys.
@@ -72,7 +72,7 @@ Re-run a conventional Doppler-drift search with established tools such as `turbo
 ### 4.3 Machine-learning analysis
 
 - **Representation learning.** Train variational autoencoders and related models on spectrogram snippets to learn what ordinary data, including ordinary interference, looks like.
-- **Density-based clustering.** Group the learned representations with HDBSCAN or DBSCAN-style density clustering [11]. Most interference forms dense, recurring clusters; isolated points and small unusual clusters are flagged for scrutiny.
+- **Density-based clustering.** Apply GLOBULAR clustering, the published method that runs HDBSCAN on turboSETI hits before event filtering [14, 17], and test the same density-clustering idea on the learned representations [11]. Most interference forms dense, recurring clusters; isolated points and small unusual clusters are flagged for scrutiny.
 - **Anomaly scoring.** Combine reconstruction error, cluster isolation and the "on-target, off-target" observing pattern (a real sky signal should appear only when the telescope points at the target) into a single ranked score.
 - **Model comparison.** Run more than one model family, so that a candidate found by only one method is treated with extra caution.
 
@@ -138,7 +138,8 @@ Contact and feedback: https://github.com/Isowix/re-seti/issues
 10. Breakthrough Listen open-source tools: blimpy https://github.com/UCBerkeleySETI/blimpy and turboSETI https://github.com/UCBerkeleySETI/turbo_seti
 11. HDBSCAN documentation. https://hdbscan.readthedocs.io/
 12. BOINC, "Docker apps". https://github.com/BOINC/boinc/wiki/Docker-apps
-13. Pardo, S., et al., "Using anomaly detection to search for technosignatures in Breakthrough Listen observations", *AJ* 170, 12 (2025). https://arxiv.org/abs/2505.03927
-14. Jacobson-Bell, B., et al., "Anomaly Detection and Radio-frequency Interference Classification with Unsupervised Learning in Narrowband Radio Technosignature Searches", *AJ* 169, 206 (2025). https://arxiv.org/abs/2411.16556
+13. Pardo, S., et al., "Using Anomaly Detection to Search for Technosignatures in Breakthrough Listen Observations", *The Astronomical Journal* 170, 12 (2025). https://doi.org/10.3847/1538-3881/add52b · arXiv:2505.03927
+14. Jacobson-Bell, B., et al., "Anomaly Detection and Radio-frequency Interference Classification with Unsupervised Learning in Narrowband Radio Technosignature Searches", *The Astronomical Journal* 169(4), 206 (2025). Introduces GLOBULAR clustering. https://doi.org/10.3847/1538-3881/adb8e7 · arXiv:2411.16556
 15. Brzycki, B., et al., "Setigen: Simulating Radio Technosignatures for SETI", arXiv:2203.09668 (2022). https://arxiv.org/abs/2203.09668
 16. Amazon Web Services, EC2 On-Demand pricing, "Data Transfer" (internet egress tiers US$0.09/GB for the first 10 TB a month, down to US$0.05/GB above 150 TB a month, US and EU regions; checked November 2026). https://aws.amazon.com/ec2/pricing/on-demand/
+17. GLOBULAR clustering code (Jacobson-Bell). https://github.com/bjacobell/gbt-hdbscan

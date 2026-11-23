@@ -1,6 +1,6 @@
 # Project Concept and Origins
 
-*RE-SETI proposal archive v1.2 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.2.1 · 23 November 2026 · Prepared by Phil Rail*
 
 ## Where the idea came from
 

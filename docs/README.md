@@ -1,4 +1,4 @@
-# RE-SETI: Proposal Archive v1.2
+# RE-SETI: Proposal Archive v1.2.1
 
 **RE-SETI: an AI reanalysis of the SETI@home-era radio archives. An independent proposal to reanalyze archival radio SETI data with modern machine learning, under a strict "trust but verify" protocol.**
 

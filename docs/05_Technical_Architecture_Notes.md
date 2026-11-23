@@ -1,6 +1,6 @@
 # Technical Architecture Notes
 
-*RE-SETI proposal archive v1.2 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.2.1 · 23 November 2026 · Prepared by Phil Rail*
 
 > **Status.** This is a design sketch for review. None of it has been built. Component choices are candidates, not commitments.
 
@@ -24,7 +24,7 @@ Volunteers, if they are used at all, only ever see Tier 2 work: small, reduced s
 
 - **Sources:** the public Breakthrough Listen archive (filterbank/HDF5 spectrograms, selected raw-voltage data, observation metadata) and, only with custodian agreement, the SETI@home Arecibo data.
 - **Tier 0, select:** choose targets and frequency ranges from metadata, published hit lists and scientific priority, before any bulk download.
-- **Tier 1, reduce:** cheap, well-understood processing filters out definite non-signals first: known interference bands are flagged, a conventional Doppler-drift search (turboSETI [3]) produces a hit list, and only small snippets around hits, plus a sample of hit-free regions for injection tests and background statistics, are kept. Breakthrough Listen's own pipeline already works this way: its filterbank products take roughly 2% of the disk space of the raw voltage data they came from [5].
+- **Tier 1, reduce:** cheap, well-understood processing filters out definite non-signals first: known interference bands are flagged, a conventional Doppler-drift search (turboSETI [3]) produces a hit list, and only small snippets around hits, plus a sample of hit-free regions for injection tests and background statistics, are kept. Because GLOBULAR clustering works on turboSETI hit lists rather than full spectrograms [14], it could also run at this tier to cut interference before anything is moved; its published trade-off (fewer false positives, lower recovery of injected events than turboSETI alone) would be re-measured in the pilot. Breakthrough Listen's own pipeline already works this way: its filterbank products take roughly 2% of the disk space of the raw voltage data they came from [5].
 - **Where Tier 1 runs:** as close to the data as the data holders allow. Options, in order of preference: on or next to the archive's own infrastructure (by arrangement), on rented machines in the same data centre or cloud region, or, as a last resort, on project machines after bulk download.
 - **Provenance:** every file and snippet is checksummed and catalogued with its source, observation metadata and processing version.
 
@@ -54,7 +54,7 @@ AirLLM is at most an optional tool for occasional, low-volume language tasks on 
 ## 4. Analysis pipeline (per Tier 2 work unit)
 
 1. **Embed:** encode the snippet with the trained representation models.
-2. **Score:** reconstruction error, density-cluster isolation (HDBSCAN/DBSCAN-style [4]) and on/off-target consistency combine into one anomaly score.
+2. **Score:** reconstruction error, density-cluster isolation (HDBSCAN [4], including GLOBULAR clustering of turboSETI hits [14]) and on/off-target consistency combine into one anomaly score.
 3. **Return:** scores, features and summary statistics go back to the Master Node; data does not.
 
 ## 5. Data transfer budget
@@ -143,3 +143,4 @@ If no volunteers are used, the same canaries and reference re-runs still apply t
 11. BOINC, "Validators". https://github.com/BOINC/boinc/wiki/Validators
 12. BOINC, "Homogeneous Redundancy". https://github.com/BOINC/boinc/wiki/Homogeneous-Redundancy
 13. Brzycki, B., et al., "Setigen: Simulating Radio Technosignatures for SETI", arXiv:2203.09668 (2022). https://arxiv.org/abs/2203.09668
+14. Jacobson-Bell, B., et al., "Anomaly Detection and Radio-frequency Interference Classification with Unsupervised Learning in Narrowband Radio Technosignature Searches", *The Astronomical Journal* 169(4), 206 (2025). Introduces GLOBULAR clustering. https://doi.org/10.3847/1538-3881/adb8e7 · arXiv:2411.16556 Code: https://github.com/bjacobell/gbt-hdbscan
