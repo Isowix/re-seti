@@ -1,6 +1,6 @@
 # Project Concept and Origins
 
-*RE-SETI proposal archive v1.1 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.2 · 23 November 2026 · Prepared by Phil Rail*
 
 ## Where the idea came from
 
@@ -13,7 +13,7 @@ The question behind this proposal is whether today's tools change that equation.
 - **Revisit the old data.** Large archives of radio SETI data already exist. Reprocessing them costs far less than observing again.
 - **Test the null result with modern methods.** Earlier searches found no confirmed technosignature. Present-day machine learning can check that conclusion in ways that were not possible in 1999, and with measured sensitivity.
 - **Build training material for the future.** Labelled interference, injected test signals and benchmark results from this work can help train and test the analysis systems for the next generation of radio telescopes.
-- **Fresh compute and modern infrastructure.** Consumer GPUs, rented cloud capacity and container-based volunteer computing (BOINC) are cheaper and far more capable than in SETI@home's early years.
+- **Fresh compute and modern infrastructure.** Consumer GPUs, rented cloud capacity and container-based volunteer computing (BOINC) are cheaper and far more capable than in SETI@home's early years. Computing is now the cheap part; moving petabytes of data is the expensive part, so the design reduces data near the archive and starts with a single-GPU pilot (documents 02 and 05).
 - **AI does the inference work.** Machine-learning models do the bulk of the signal analysis, and AI agents and workflow automation handle routine coordination such as scheduling work, checking results, monitoring systems and drafting reports, so that a small team can run the project. People make the decisions that matter: what counts as a candidate, what gets published, and what gets referred to a telescope team.
 
 ## How it addresses the barriers
@@ -21,8 +21,8 @@ The question behind this proposal is whether today's tools change that equation.
 | Barrier | Proposed approach |
 |---|---|
 | Personnel | Automation and AI agents for routine operations; people kept for review and decisions |
-| Compute cost | Volunteer computers through BOINC, plus modest rented cloud capacity |
-| Data cost | Start with public archives; prioritize high-value subsets |
+| Compute cost | One GPU for the pilot; rented GPUs or, if the pilot's numbers justify it, volunteer computers through BOINC |
+| Data cost (the dominant cost) | Start with public archives; filter and reduce data at or near the archive; move only reduced, prioritized subsets |
 | Credibility | Injected-signal testing, human review, independent confirmation, published null results |
 | Vendor lock-in | Open-source tools; no dependence on any single AI model or provider |
 

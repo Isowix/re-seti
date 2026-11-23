@@ -24,7 +24,7 @@ A critical reading of a short briefing note and, if you wish, the longer proposa
 
 - Project page: https://isowix.github.io/re-seti/
 - Briefing note: `07_Briefing_Note_for_Reviewers.md`, in the archive below and in the repository at https://github.com/Isowix/re-seti
-- Full proposal archive (optional, longer): https://github.com/Isowix/re-seti/releases/download/v1.1/RE-SETI_Proposal_Archive_v1.1.zip
+- Full proposal archive (optional, longer): https://github.com/Isowix/re-seti/releases/download/v1.2/RE-SETI_Proposal_Archive_v1.2.zip
 
 ## How to respond
 

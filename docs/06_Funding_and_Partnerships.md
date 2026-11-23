@@ -1,12 +1,14 @@
 # Funding and Partnerships
 
-*RE-SETI proposal archive v1.1 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.2 · 23 November 2026 · Prepared by Phil Rail*
 
 > **Status.** No funding has been sought or raised, and no partnerships exist. This document lists *possible* avenues to explore after review. Naming an organization here does not imply it has been contacted or has shown interest.
 
 ## Why the model can be lean
 
-The SETI@home team has said the biggest obstacle to a new volunteer-computing SETI project is personnel, "and personnel means salaries" [1]. This proposal aims to keep the core team small by automating routine operations and by using volunteer computing and short-term cloud rental instead of owned hardware (documents 04 and 05). Cost estimates will be prepared once the pilot dataset (Phase 1) is chosen, because data transfer and storage volume drive most of the non-staff cost.
+The SETI@home team has said the biggest obstacle to a new volunteer-computing SETI project is personnel, "and personnel means salaries" [1]. This proposal aims to keep the core team small by automating routine operations and by renting computing instead of owning hardware (documents 04 and 05).
+
+Computing itself is the cheap part. The largest non-staff cost is expected to be **moving data**: at published cloud egress prices [6], sending all ~31 PB held by Breakthrough Listen [5] would cost on the order of US$1.5 million or more, while a reduced subset the size of one major survey's filterbank products (142 TB [5]) would be on the order of US$10,000, if egress fees apply at all (document 05, section 5). The project therefore plans to reduce data near the archive and move only what it needs. A real budget will be set from the measured numbers of the Phase 0 single-GPU pilot (document 02), which itself needs only one consumer GPU and public data.
 
 ## Possible funding avenues
 
@@ -33,7 +35,7 @@ Open tools and datasets can attract support through programs such as GitHub Spon
 
 ### Volunteer and in-kind contributions
 
-The BOINC volunteer community contributes computing time rather than money. Cloud providers sometimes offer research credits; these would be welcome but must not create dependence on a single provider.
+The BOINC volunteer community contributes computing time rather than money. A volunteer network would be used only if the pilot shows it is needed and the data can be delivered affordably (document 02). Cloud providers sometimes offer research credits; these would be welcome but must not create dependence on a single provider.
 
 ## Principles
 
@@ -47,3 +49,5 @@ The BOINC volunteer community contributes computing time rather than money. Clou
 2. Breakthrough Initiatives, announcement of Breakthrough Listen, 20 July 2015. https://breakthroughinitiatives.org/news/1
 3. SETI Institute, "$200m Gift Propels Scientific Research in the Search for Life Beyond Earth", 8 November 2023. https://www.seti.org/news/200m-gift-propels-scientific-research-in-the-search-for-life-beyond-earth/
 4. SETI Institute, "SETI Institute Awards Its First Research and Education Innovation Grants", 8 July 2024. https://www.seti.org/news/seti-institute-awards-its-first-research-and-education-innovation-grants/
+5. MacMahon, D. H. E., and Czech, D. J., "The First Decade of Breakthrough Listen", arXiv:2610.07482 (2026, preprint). https://arxiv.org/abs/2610.07482
+6. Amazon Web Services, EC2 On-Demand pricing, "Data Transfer" (checked November 2026). https://aws.amazon.com/ec2/pricing/on-demand/

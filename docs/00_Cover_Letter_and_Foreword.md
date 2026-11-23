@@ -1,6 +1,6 @@
 # RE-SETI: An AI Reanalysis of the SETI@home-Era Radio Archives
 
-*RE-SETI proposal archive v1.1 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.2 · 23 November 2026 · Prepared by Phil Rail*
 
 > **Status.** This is an early-stage, independent proposal. No organization has been formed, no funding has been raised, and no computing infrastructure has been built. It is being circulated to find reviewers and collaborators.
 >
