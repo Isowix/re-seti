@@ -35,6 +35,7 @@
 <body>
   <a class="skip" href="#content">Skip to content</a>
   <div class="sky" aria-hidden="true"></div>
+  <canvas class="starfield" aria-hidden="true"></canvas>
 
   <header class="site-header">
     <a class="brand" href="#top">
@@ -57,8 +58,9 @@
       <a href="#architecture">Architecture</a>
       <a href="#plan">Plan</a>
       <a href="#validate">Validate</a>
-      <a href="#funding">Funding</a>
-      <a href="#review">Review</a>
+        <a href="#funding">Funding</a>
+        <a href="#documents">Docs</a>
+        <a href="#review">Review</a>
     </nav>
     <a class="btn btn-gold btn-small header-download" href="https://github.com/Isowix/seti-home-2/releases/download/v1.0/SETI_Home_2_Official_Archive_v1.0.zip">
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
@@ -77,10 +79,10 @@
           <h1 id="hero-title">SETI<span class="at">@Home</span> 2</h1>
           <p class="tagline">Your GPU. Their stars.<br>Trust but verify.</p>
           <p class="lede">A proposal to look again at radio data that has already been recorded — the original SETI@home corpus, where it can still be read, and the public Breakthrough Listen archive — with the anomaly-detection methods of this decade.</p>
-          <p class="byline">An independent proposal by Phil Rail. Concept and review phase.</p>
+          <p class="byline">An early-stage independent proposal by Phil Rail, seeking reviewers and collaborators.</p>
           <div class="actions" id="download">
             <a class="btn btn-gold" href="https://github.com/Isowix/seti-home-2/releases/download/v1.0/SETI_Home_2_Official_Archive_v1.0.zip">Download the proposal</a>
-            <a class="btn btn-ghost" href="https://github.com/Isowix/seti-home-2/releases/tag/v1.0">Release v1.0</a>
+            <a class="btn btn-ghost" href="https://github.com/Isowix/seti-home-2/releases/latest">Latest release</a>
           </div>
           <p class="fine">The download is a ZIP of the v1.0 proposal archive: a reviewer briefing, an invitation, and short planning notes. It is documents only. It is not a science client, not a model, and not telescope data.</p>
           <dl class="status">
@@ -103,67 +105,19 @@
           </dl>
           <p class="disclaimer">SETI@Home 2 is an independent proposal and is not affiliated with or endorsed by UC Berkeley's SETI@home project, Breakthrough Listen, or the SETI Institute.</p>
         </div>
-        <svg class="hero-art" viewBox="0 0 640 600" aria-hidden="true">
-          <defs>
-            <linearGradient id="face" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#f7fbff"/>
-              <stop offset="0.42" stop-color="#d5e0ea"/>
-              <stop offset="1" stop-color="#8ea0b2"/>
-            </linearGradient>
-            <radialGradient id="well" cx="45%" cy="42%" r="60%">
-              <stop offset="0" stop-color="#9eb4c6" stop-opacity="0.15"/>
-              <stop offset="1" stop-color="#1c3144" stop-opacity="0.45"/>
-            </radialGradient>
-          </defs>
-          <g fill="#fff">
-            <circle cx="520" cy="36" r="1.1" opacity=".7"/>
-            <circle cx="590" cy="110" r="1.2" opacity=".8"/>
-            <circle cx="40" cy="70" r="1" opacity=".55"/>
-            <circle cx="600" cy="220" r="1" opacity=".5"/>
-            <circle cx="470" cy="80" r="1" opacity=".45"/>
-          </g>
-          <polygon points="300,28 303.1,36 312,36.4 305.2,41.2 307.4,49.4 300,44.8 292.6,49.4 294.8,41.2 288,36.4 296.9,36" fill="#e7c98a"/>
-          <g fill="none" stroke="#7ec8ea" stroke-width="1.25" opacity=".7">
-            <path d="M48 500 C 160 468, 280 524, 400 486 S 560 508, 610 470"/>
-            <path d="M36 536 C 170 500, 300 560, 450 520 S 580 540, 620 508"/>
-          </g>
-          <g fill="none" stroke="#9adfff" stroke-width="1.4">
-            <rect x="70" y="492" width="18" height="13" rx="2"/>
-            <rect x="168" y="522" width="18" height="13" rx="2"/>
-            <rect x="286" y="486" width="18" height="13" rx="2"/>
-            <rect x="392" y="530" width="18" height="13" rx="2"/>
-            <rect x="498" y="492" width="18" height="13" rx="2"/>
-            <rect x="582" y="524" width="18" height="13" rx="2"/>
-          </g>
-          <g class="beams" fill="none" stroke-linecap="round">
-            <path class="beam" d="M248 168 L 79 498"/>
-            <path class="beam" d="M248 168 L 177 528"/>
-            <path class="beam" d="M248 168 L 295 492"/>
-            <path class="beam" d="M248 168 L 401 536"/>
-            <path class="beam" d="M248 168 L 507 498"/>
-            <path class="beam" d="M248 168 L 591 530"/>
-          </g>
-          <g transform="translate(36,48)">
-            <path d="M150 292 h58 l20 128 h-98 z" fill="#c5d3e0"/>
-            <path d="M112 416 h150 l14 20 H98 z" fill="#8ea3b5"/>
-            <g transform="rotate(-22 210 168)">
-              <ellipse cx="214" cy="176" rx="158" ry="118" fill="#6f8496"/>
-              <ellipse cx="198" cy="164" rx="152" ry="112" fill="url(#face)"/>
-              <ellipse cx="198" cy="164" rx="152" ry="112" fill="url(#well)"/>
-              <g stroke="#ffffff" stroke-opacity=".35" stroke-width="1.25">
-                <path d="M198 56 v216"/>
-                <path d="M70 164 h256"/>
-                <path d="M98 90 C 150 130, 170 150, 198 164"/>
-                <path d="M298 90 C 246 130, 226 150, 198 164"/>
-                <path d="M98 238 C 150 198, 170 178, 198 164"/>
-                <path d="M298 238 C 246 198, 226 178, 198 164"/>
-              </g>
-              <ellipse cx="198" cy="164" rx="152" ry="112" fill="none" stroke="#f7fbff" stroke-width="3"/>
-              <circle cx="198" cy="164" r="7" fill="#f4f8fb"/>
-              <circle cx="198" cy="164" r="3" fill="#8fdfff"/>
-            </g>
-          </g>
-        </svg>
+        <figure class="hero-figure">
+          <p class="badge">Illustrative</p>
+          <div class="waterfall">
+            <canvas class="waterfall-canvas" width="360" height="220">A sketch of a radio waterfall. A bright diagonal is a drifting narrowband tone. Steady horizontal lines and full-band flashes stand in for interference.</canvas>
+            <p class="axes"><span>Frequency →</span><span>Newer time at the bottom</span></p>
+          </div>
+          <ul class="legend">
+            <li><span class="swatch sig" aria-hidden="true"></span> Cyan diagonal: a narrowband tone that drifts. An astronomical signal tends to do that as the Earth moves.</li>
+            <li><span class="swatch rfi" aria-hidden="true"></span> Gold line that stays put: a tone on one frequency. A lot of interference looks like that.</li>
+            <li><span class="swatch burst" aria-hidden="true"></span> A warm flash across every channel at once. That is also typical interference, not a distant transmitter.</li>
+          </ul>
+          <figcaption>Illustrative, not an observation. The search the proposal describes is for a drift, and it has to refuse the lines that do not drift. No telescope recorded this frame.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -238,7 +192,43 @@
       <div class="wrap">
         <p class="kicker">Methodology</p>
         <h2 id="method-title">Six steps, from spectrogram to a candidate worth a person’s time</h2>
-        <p class="section-intro">The pipeline below is the scientific shape of the proposal. It is not software that runs today. AI is allowed to nominate. It is not allowed to conclude.</p>
+        <p class="section-intro">The pipeline below is the scientific shape of the proposal. It is not software that runs today. AI is allowed to nominate. It is not allowed to conclude. The picture in the header is the kind of data step one would start from.</p>
+        <figure class="diagram">
+          <p class="badge">Order of work</p>
+          <ol class="flow">
+            <li>
+              <span class="flow-index">1</span>
+              <h3>Spectrogram</h3>
+              <p>Time against frequency, from an archive.</p>
+            </li>
+            <li>
+              <span class="flow-index">2</span>
+              <h3>Clean</h3>
+              <p>Flag interference, calibrate, normalize.</p>
+            </li>
+            <li>
+              <span class="flow-index">3</span>
+              <h3>Detect</h3>
+              <p>A model nominates what does not fit.</p>
+            </li>
+            <li>
+              <span class="flow-index">4</span>
+              <h3>Rank</h3>
+              <p>Unusual, rare, and strong enough to read next.</p>
+            </li>
+            <li>
+              <span class="flow-index">5</span>
+              <h3>Inject</h3>
+              <p>Plant known signals. Measure what comes back.</p>
+            </li>
+            <li class="gate">
+              <span class="flow-index">6</span>
+              <h3>Confirm</h3>
+              <p>A second telescope, then a person.</p>
+            </li>
+          </ol>
+          <figcaption>The line marks sequence only. Nothing is flowing through a real system.</figcaption>
+        </figure>
         <ol class="pipeline">
           <li class="step">
             <h3>Raw spectrograms</h3>
@@ -287,7 +277,62 @@
       <div class="wrap">
         <p class="kicker">Architecture</p>
         <h2 id="architecture-title">A Master Node, public archives, and GPUs that have not joined</h2>
-        <p class="section-intro">The drawing is a design for a distributed processing network. Read it as a proposal diagram. The Master Node is not running. No archive is connected. No volunteer computer has joined, and there is no client to install.</p>
+        <p class="section-intro">Read this as a proposal diagram. The Master Node is not running. No archive is connected. No volunteer computer has joined, and there is no client to install.</p>
+        <figure class="diagram">
+          <p class="badge">Proposed shape</p>
+          <div class="arch">
+            <div class="arch-in">
+              <p class="arch-label">In</p>
+              <div class="arch-node">
+                <h3>Public archives</h3>
+                <p>Observations and filterbank products that are already on disk, and only where the terms allow a reread.</p>
+              </div>
+              <div class="arch-node">
+                <h3>Metadata</h3>
+                <p>Which telescope, which time, which band. Without that, a hit cannot be checked.</p>
+              </div>
+              <div class="arch-node">
+                <h3>No feed connected</h3>
+                <p>Facilities that produced public radio data are sources in the literature. They are not partners here.</p>
+              </div>
+            </div>
+            <div class="arch-hub">
+              <div class="master">
+                <p class="arch-label">Not running</p>
+                <h3>Master Node</h3>
+                <p>Would hand out work, take results back, and remember which checks a candidate has passed.</p>
+              </div>
+            </div>
+            <div class="arch-out">
+              <p class="arch-label">Out</p>
+              <div class="arch-node">
+                <h3>Model weights</h3>
+                <p>Sent to the nodes, with room for feedback. No model has been trained for this.</p>
+              </div>
+              <div class="arch-node">
+                <h3>Result record</h3>
+                <p>What was processed, what failed, and the provenance of both.</p>
+              </div>
+              <div class="arch-node">
+                <h3>Human review</h3>
+                <p>A person stands in front of the word “interesting.”</p>
+              </div>
+            </div>
+            <div class="arch-floor">
+              <p class="arch-label">Compute that has not joined</p>
+              <div class="gpu-row" aria-hidden="true">
+                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+              </div>
+              <p>Volunteer GPUs, using layer-wise inference if a model is larger than the card. The row is a drawing of a hope. The number of machines that have joined is zero.</p>
+            </div>
+          </div>
+          <figcaption>Arrows are intentions. Work would go out to the machines and results would come back. Neither direction has any traffic.</figcaption>
+        </figure>
         <div class="why-grid">
           <article class="card">
             <h3>Public archives in</h3>
@@ -302,10 +347,13 @@
             <p>The client in the notes is BOINC plus Docker, running memory-efficient, layer-wise inference so a larger model can pass through a consumer GPU a layer at a time. AirLLM is one open technique of that kind, not a commitment to a product. The tagline “Your GPU” is the ambition. The count of volunteers today is zero.</p>
           </article>
         </div>
-        <figure class="figure">
-          <img src="assets/architecture.webp" width="1168" height="784" alt="Proposed architecture diagram titled SETI@Home 2 Architecture. A central Master Node, drawn as a resilient cloud cluster, would coordinate work. On the left, public Breakthrough Listen archives (raw observations, filterbank data, and a metadata catalog) would flow in. On the right, an AI model repository, a result database, and an expert review queue would exchange models, validated results, and review decisions. Along the bottom, volunteer GPU computers would receive work units and return results. The footer lists design principles: fault-tolerant, scalable, secure, open science, community driven." loading="lazy" decoding="async">
-          <figcaption>Proposed architecture, from the v1.0 archive. No node is operating, no feed is connected, and the row of computers is a drawing of a hope. It is not a roster of volunteers.</figcaption>
-        </figure>
+        <details class="archive">
+          <summary>Architecture poster from the v1.0 archive</summary>
+          <figure class="figure">
+            <img src="assets/architecture.webp" width="1168" height="784" alt="Archive poster titled SETI@Home 2 Architecture. A central Master Node would coordinate work. Public archives would flow in. A model repository, a result database, and a review queue sit on the right. A row of computers stands for volunteer GPUs. The poster is a design drawing, not a system that is running." loading="lazy" decoding="async">
+            <figcaption>From the v1.0 archive. The row of computers is not a roster. No node is operating and no feed is connected.</figcaption>
+          </figure>
+        </details>
       </div>
     </section>
 
@@ -314,7 +362,7 @@
         <p class="kicker">Phased plan</p>
         <h2 id="plan-title">Five phases, none of them started</h2>
         <p class="section-intro">The months below are counted from a future start that has not been set. They describe sequence, so a reviewer can see what would have to come first. They are not a schedule, a budget, or a staff plan.</p>
-        <ol class="phases">
+        <ol class="rail">
           <li class="phase">
             <p class="when">Phase 1 · Months 1–3</p>
             <h3>Foundation</h3>
@@ -341,10 +389,13 @@
             <p>Anything that still ranks high goes to a person. Only after that would anyone ask an observatory for independent observing time. Nothing of that kind is arranged. Results, including a null, would be written up in public.</p>
           </li>
         </ol>
-        <figure class="figure">
-          <img src="assets/timeline.webp" width="1168" height="784" alt="Planning poster titled SETI@Home 2 Project Creation Timeline, from concept to sustained discovery. Eight stages run left to right: Foundation (define vision, goals, and principles), Architecture (design the system and a technical roadmap), Data partnerships (establish collaborations and secure data access), AI models (develop and train models for detection and classification), Pilot (test end to end on pilot data), Scaling (grow infrastructure and distributed computing), Funding (secure sustainable funding and community support), and Operations (launch, monitor, and continue). A legend defines icons for a radio telescope, a neural network, cloud infrastructure, partnerships, and a milestone mark. No stage is checked off." loading="lazy" decoding="async">
-          <figcaption>A second sketch from the same archive, in eight stages rather than five. “Data partnerships,” “Funding,” and “Operations” are hopes for later. None of these stages has started, and no milestone has been achieved.</figcaption>
-        </figure>
+        <details class="archive">
+          <summary>Eight-stage poster from the v1.0 archive — none of it started</summary>
+          <figure class="figure">
+            <img src="assets/timeline.webp" width="1168" height="784" alt="Archive poster titled SETI@Home 2 Project Creation Timeline. Eight stages run from foundation through operations. No stage is marked complete. Data partnerships, funding, and operations on the poster are hopes, not agreements." loading="lazy" decoding="async">
+            <figcaption>A different sketch from the same archive, in eight stages rather than five. Data partnerships, funding, and operations are hopes for later. No milestone has been achieved.</figcaption>
+          </figure>
+        </details>
       </div>
     </section>
 
@@ -353,6 +404,32 @@
         <p class="kicker">Trust but verify</p>
         <h2 id="validate-title">A candidate is boring until it survives</h2>
         <p class="section-intro">Every stage is meant to be reproducible and auditable. The proposal rejects unsubstantiated claims. Sensational findings are a failure mode, not a goal. No one should describe a hit from this effort as interesting until the checks below have happened — and those checks are a policy, not a pipeline that exists.</p>
+        <figure class="diagram">
+          <p class="badge">Illustrative — not a count</p>
+          <ol class="funnel">
+            <li style="--w:100%">
+              <strong>Raw hits</strong>
+              <span>Everything bright in the spectrogram, including interference.</span>
+            </li>
+            <li style="--w:82%">
+              <strong>After RFI flags</strong>
+              <span>The lines that sit still, and the flashes that hit every channel, come out.</span>
+            </li>
+            <li style="--w:64%">
+              <strong>Model anomalies</strong>
+              <span>What is unusual, not merely loud. A nomination, not a finding.</span>
+            </li>
+            <li style="--w:46%">
+              <strong>Passes the injection test</strong>
+              <span>Only if planted signals return, and empty stretches stay quiet.</span>
+            </li>
+            <li style="--w:30%">
+              <strong>A person reads it</strong>
+              <span>Before anyone treats it as interesting, or asks another telescope to look.</span>
+            </li>
+          </ol>
+          <figcaption>Illustrative shape, not a count. No search has been run, so there is no number of hits to draw. The narrowing is a metaphor for how strict the later gates are. It is not a measurement.</figcaption>
+        </figure>
         <div class="pillars">
           <article class="pillar">
             <h3>Injected signals</h3>
@@ -371,6 +448,33 @@
             <p>If the checks wipe the slate clean, that is the result to publish. Methods, models, and negative findings would be written so someone else can rerun them. Open science here is a constraint, not a slogan.</p>
           </article>
         </div>
+        <figure class="diagram">
+          <p class="badge">Illustrative shapes</p>
+          <div class="chart-scroll" tabindex="0">
+            <svg viewBox="0 0 760 430" role="img" aria-labelledby="chart-title chart-desc">
+              <title id="chart-title">Illustrative injection-recovery sketch</title>
+              <desc id="chart-desc">A conceptual chart with no measurements. One curve shows planted drifting tones being noticed more often as they get stronger. A second curve shows empty controls staying quiet. If the first curve stays flat, or the second curve rises with it, the search is not ready to rank candidates.</desc>
+              <rect width="760" height="430" fill="#0b1524"/>
+              <g stroke="#8fdfff" stroke-opacity="0.16">
+                <line x1="92" y1="70" x2="700" y2="70"/>
+                <line x1="92" y1="150" x2="700" y2="150"/>
+                <line x1="92" y1="230" x2="700" y2="230"/>
+                <line x1="92" y1="310" x2="700" y2="310"/>
+              </g>
+              <line x1="92" y1="36" x2="92" y2="324" stroke="#d5deea" stroke-width="1.4"/>
+              <line x1="92" y1="324" x2="708" y2="324" stroke="#d5deea" stroke-width="1.4"/>
+              <path d="M110 308 C 260 306, 430 304, 690 301" fill="none" stroke="#e7c98a" stroke-width="3" stroke-dasharray="8 6"/>
+              <path d="M110 304 C 210 300, 280 286, 360 210 S 520 78, 690 58" fill="none" stroke="#8fdfff" stroke-width="3.5" stroke-linejoin="round"/>
+              <circle cx="360" cy="210" r="4.5" fill="#8fdfff"/>
+              <text x="400" y="368" text-anchor="middle" fill="#f4f7fb" font-family="Barlow, sans-serif" font-size="16">Planted tone, weaker → stronger</text>
+              <text x="36" y="190" fill="#f4f7fb" font-family="Barlow, sans-serif" font-size="16" transform="rotate(-90 36 190)" text-anchor="middle">Noticed less → noticed more</text>
+              <text x="500" y="48" fill="#8fdfff" font-family="Barlow, sans-serif" font-size="15">Planted drifting tones</text>
+              <text x="470" y="250" fill="#e7c98a" font-family="Barlow, sans-serif" font-size="15">Empty controls, nothing planted</text>
+              <text x="110" y="408" fill="#e7c98a" font-family="Barlow Condensed, sans-serif" font-size="15" letter-spacing="1.4">ILLUSTRATIVE — NOT A MEASUREMENT, AND NOT A RECOVERY RATE</text>
+            </svg>
+          </div>
+          <figcaption>Illustrative. These curves are the shape of the test the proposal requires. They are not the output of a test. No signal has been planted, and no recovery rate exists. A pipeline that is ready notices planted drifting tones once they are strong enough to matter, and stays quiet where nothing was planted. If the cyan curve stays flat, or the gold curve climbs with it, ranking is not ready. On a narrow screen, scroll the chart sideways.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -397,10 +501,52 @@
             <p>Sponsored cloud credits, community tooling, or advice from people who run volunteer-computing projects could matter later, because the operating idea is deliberately lean. Nobody has offered that help. There is no BOINC project to join.</p>
           </article>
         </div>
-        <figure class="figure">
-          <img src="assets/funding.webp" width="1168" height="784" alt="Poster titled SETI@Home 2 Funding Sources. It sketches four kinds of support: private philanthropy, citizen-science grants, observatory partnerships, and open-source sponsorships. Each column prints a historical precedent from other efforts, including dollar figures next to Breakthrough Listen and the SETI Institute, and names of agencies and observatories. Those precedents describe other organizations. They are not funds, grants, or partnerships of this proposal." loading="lazy" decoding="async">
-          <figcaption>Historical examples, not commitments. Dollar figures, agencies, and observatories printed on this poster describe other projects. SETI@Home 2 has raised no money, filed no grant, and signed no partnership. Do not read the poster as a budget or as an endorsement.</figcaption>
-        </figure>
+        <details class="archive">
+          <summary>Funding poster from the archive — historical examples, not commitments</summary>
+          <figure class="figure">
+            <img src="assets/funding.webp" width="1168" height="784" alt="Poster titled SETI@Home 2 Funding Sources. It sketches four kinds of support: private philanthropy, citizen-science grants, observatory partnerships, and open-source sponsorships. Each column prints a historical precedent from other efforts, including dollar figures next to Breakthrough Listen and the SETI Institute, and names of agencies and observatories. Those precedents describe other organizations. They are not funds, grants, or partnerships of this proposal." loading="lazy" decoding="async">
+            <figcaption>Historical examples, not commitments. Dollar figures, agencies, and observatories printed on this poster describe other projects. SETI@Home 2 has raised no money, filed no grant, and signed no partnership. Do not read the poster as a budget or as an endorsement.</figcaption>
+          </figure>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="documents" aria-labelledby="documents-title">
+      <div class="wrap">
+        <p class="kicker">Documents</p>
+        <h2 id="documents-title">The rewrite will live in docs/</h2>
+        <p class="section-intro">The proposal documents are being rewritten. They will be added as Markdown under <code>docs/</code>. The index and the files below are placeholders a coordinator can replace. Until a file is replaced, it is not the argument.</p>
+        <ul class="doc-list">
+          <li>
+            <a href="docs/README.md">Document index</a>
+            <span>The map of the folder. Start here.</span>
+          </li>
+          <li>
+            <a href="docs/briefing.md">Reviewer briefing</a>
+            <span>Placeholder for the short note to reviewers.</span>
+          </li>
+          <li>
+            <a href="docs/proposal.md">Proposal</a>
+            <span>Placeholder for the proposal itself.</span>
+          </li>
+          <li>
+            <a href="docs/phases.md">Phased plan</a>
+            <span>Placeholder. The five phases on this page are the current sketch.</span>
+          </li>
+          <li>
+            <a href="docs/architecture.md">Architecture notes</a>
+            <span>Placeholder. The diagram above is the current sketch.</span>
+          </li>
+          <li>
+            <a href="docs/intent.md">Statement of intent</a>
+            <span>Placeholder.</span>
+          </li>
+          <li>
+            <a href="docs/funding.md">Funding notes</a>
+            <span>Placeholder. Avenues only. Nothing has been raised.</span>
+          </li>
+        </ul>
+        <p class="fine">The download button still fetches the v1.0 archive, which is the package on the <a href="https://github.com/Isowix/seti-home-2/releases/latest">latest release</a> until a newer one is published.</p>
       </div>
     </section>
 
@@ -434,7 +580,8 @@
       <p class="disclaimer">SETI@Home 2 is an independent proposal and is not affiliated with or endorsed by UC Berkeley's SETI@home project, Breakthrough Listen, or the SETI Institute.</p>
       <ul class="foot-links">
         <li><a href="https://github.com/Isowix/seti-home-2">Repository</a></li>
-        <li><a href="https://github.com/Isowix/seti-home-2/releases/tag/v1.0">Release v1.0</a></li>
+        <li><a href="docs/README.md">Documents</a></li>
+        <li><a href="https://github.com/Isowix/seti-home-2/releases/latest">Latest release</a></li>
         <li><a href="https://github.com/Isowix/seti-home-2/releases/download/v1.0/SETI_Home_2_Official_Archive_v1.0.zip">Download the proposal</a></li>
         <li><a href="https://github.com/Isowix/seti-home-2/issues">Issues</a></li>
       </ul>
