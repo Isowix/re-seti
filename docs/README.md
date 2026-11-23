@@ -1,22 +1,40 @@
-# SETI@Home 2 documents
+# RE-SETI: Proposal Archive v1.1
 
-Placeholder index. The proposal is being rewritten. When a finished document is ready, it replaces the stub linked below. Until that happens, the stub is not the proposal.
+**RE-SETI: an AI reanalysis of the SETI@home-era radio archives. An independent proposal to reanalyze archival radio SETI data with modern machine learning, under a strict "trust but verify" protocol.**
 
-The downloadable archive today is still [release v1.0](https://github.com/Isowix/seti-home-2/releases/download/v1.0/SETI_Home_2_Official_Archive_v1.0.zip). Newer packages, when they exist, will be on the [latest release](https://github.com/Isowix/seti-home-2/releases/latest).
+Prepared by Phil Rail · 23 November 2026
 
-SETI@Home 2 is an independent proposal by Phil Rail and is not affiliated with or endorsed by UC Berkeley's SETI@home project, Breakthrough Listen, or the SETI Institute.
+> **Status.** Early-stage proposal, circulated for review. No organization has been formed, no funding has been raised, and no infrastructure has been built. Reviewers and collaborators are welcome.
+>
+> **Not affiliated.** RE-SETI is not affiliated with, endorsed by, or operated by UC Berkeley or its SETI@home project, the Berkeley SETI Research Center, Breakthrough Listen or the Breakthrough Initiatives, or the SETI Institute. The name refers to re-examining earlier SETI data; RE-SETI is not a continuation of SETI@home.
 
-No organization has been formed, no funding has been raised, and no infrastructure has been built. Reviewers and collaborators are welcome. Open an issue to share review feedback.
+## In one paragraph
 
-## Planned files
+SETI@home (1999–2020) and Breakthrough Listen (2015 onward) recorded vast amounts of radio data and found no confirmed technosignature. RE-SETI proposes to revisit that data with fresh compute, modern infrastructure and machine-learning models doing the inference work: to test the null result with measured sensitivity, and to publish the labelled data and benchmarks so that future radio-telescope surveys can be analyzed better. The most likely outcome is a stronger, better-measured null result, which is still worth having.
 
-| File | What it will hold |
-| --- | --- |
-| [briefing.md](briefing.md) | Short reviewer briefing |
-| [proposal.md](proposal.md) | The proposal itself |
-| [phases.md](phases.md) | Phased plan |
-| [architecture.md](architecture.md) | Technical architecture notes |
-| [intent.md](intent.md) | Statement of intent |
-| [funding.md](funding.md) | Funding and partnership notes, as possibilities only |
+## Where to start
 
-Replace a stub in full when the rewrite of that piece is ready. Leave this index as the map, and update the descriptions if a filename changes.
+- **Short on time?** Read `07_Briefing_Note_for_Reviewers.md` (about 2 pages).
+- **Want the full case?** Read `01_Full_Formal_Proposal.md`.
+
+## Contents
+
+| File | What it is |
+|---|---|
+| `00_Cover_Letter_and_Foreword.md` | Cover letter and the "trust but verify" principle |
+| `01_Full_Formal_Proposal.md` | Background, objectives, method, validation, risks |
+| `02_Detailed_Phased_Implementation_Plans.md` | Review gate plus five phases with exit checks |
+| `03_Statement_of_Intent.md` | The commitments the project would operate under |
+| `04_Project_Concept_and_Origins.md` | Where the idea came from and the barriers it addresses |
+| `05_Technical_Architecture_Notes.md` | Design sketch: data, coordination, workers, validation |
+| `06_Funding_and_Partnerships.md` | Possible funding avenues and precedents |
+| `07_Briefing_Note_for_Reviewers.md` | Short plain-language summary for reviewers |
+| `08_Invitation_to_Review.md` | Letter inviting reviewers |
+| `09_References.md` | All sources cited in the archive |
+| `pdf/` | PDF versions of the documents above |
+
+## Links
+
+- Project page: https://isowix.github.io/re-seti/
+- Repository: https://github.com/Isowix/re-seti
+- Feedback: https://github.com/Isowix/re-seti/issues (GitHub issues are public)
