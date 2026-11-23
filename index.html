@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SETI@Home 2 — Your GPU. Their stars. Trust but verify.</title>
+  <meta name="description" content="An independent proposal by Phil Rail to reanalyze historical radio SETI archives with modern anomaly detection. Concept phase: no organization, funding, or infrastructure yet.">
+  <meta name="author" content="Phil Rail">
+  <meta name="theme-color" content="#07101c">
+  <link rel="canonical" href="https://isowix.github.io/seti-home-2/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://isowix.github.io/seti-home-2/">
+  <meta property="og:title" content="SETI@Home 2 — Your GPU. Their stars. Trust but verify.">
+  <meta property="og:description" content="An independent proposal to re-check historical radio SETI archives with modern anomaly detection, under a trust-but-verify standard. Concept phase. Nothing built yet.">
+  <meta property="og:image" content="https://isowix.github.io/seti-home-2/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SETI@Home 2. Your GPU. Their stars. Trust but verify. An independent proposal in concept review, beside a drawing of a radio telescope.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SETI@Home 2 — Your GPU. Their stars. Trust but verify.">
+  <meta name="twitter:description" content="An independent proposal to re-check historical radio SETI archives with modern anomaly detection. Concept phase. Nothing built yet.">
+  <meta name="twitter:image" content="https://isowix.github.io/seti-home-2/assets/og-image.jpg">
+  <meta name="twitter:image:alt" content="SETI@Home 2. Your GPU. Their stars. Trust but verify. An independent proposal in concept review, beside a drawing of a radio telescope.">
+  <link rel="preload" href="assets/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/styles.css">
+  <noscript>
+    <style>
+      #site-nav { display: flex !important; position: static !important; flex-wrap: wrap; }
+      .nav-toggle { display: none !important; }
+    </style>
+  </noscript>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="sky" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#0e1a2c"/>
+        <path d="M5 22.5c1.2-9 9.2-14 16.8-9.2C16.2 12 9.6 15.2 8.2 22.8c2.2-4.2 6.4-6.4 10.6-6.2" fill="#d7e3ee"/>
+        <path d="M13.2 21.6h4.2l1.5 6.2h-7.2z" fill="#8ea3b5"/>
+        <circle cx="23.2" cy="9.2" r="1.5" fill="#8fdfff"/>
+      </svg>
+      SETI<span class="at">@Home</span>&nbsp;2
+    </a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span class="open-label">Menu</span>
+      <span class="close-label">Close</span>
+    </button>
+    <nav id="site-nav" aria-label="Page">
+      <a href="#why">Why now</a>
+      <a href="#premise">Premise</a>
+      <a href="#method">Method</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#plan">Plan</a>
+      <a href="#validate">Validate</a>
+      <a href="#funding">Funding</a>
+      <a href="#review">Review</a>
+    </nav>
+    <a class="btn btn-gold btn-small header-download" href="https://github.com/Isowix/seti-home-2/releases/download/v1.0/SETI_Home_2_Official_Archive_v1.0.zip">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M8 1.5v8M4.5 6.5 8 10l3.5-3.5M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="label">Download</span>
+      <span class="vh"> the proposal, ZIP, documents only</span>
+    </a>
+  </header>
+
+  <main id="content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="kicker">AI-accelerated search for technosignatures</p>
+          <h1 id="hero-title">SETI<span class="at">@Home</span> 2</h1>
+          <p class="tagline">Your GPU. Their stars.<br>Trust but verify.</p>
+          <p class="lede">A proposal to look again at radio data that has already been recorded — the original SETI@home corpus, where it can still be read, and the public Breakthrough Listen archive — with the anomaly-detection methods of this decade.</p>
+          <p class="byline">An independent proposal by Phil Rail. Concept and review phase.</p>
+          <div class="actions" id="download">
+            <a class="btn btn-gold" href="https://github.com/Isowix/seti-home-2/releases/download/v1.0/SETI_Home_2_Official_Archive_v1.0.zip">Download the proposal</a>
+            <a class="btn btn-ghost" href="https://github.com/Isowix/seti-home-2/releases/tag/v1.0">Release v1.0</a>
+          </div>
+          <p class="fine">The download is a ZIP of the v1.0 proposal archive: a reviewer briefing, an invitation, and short planning notes. It is documents only. It is not a science client, not a model, and not telescope data.</p>
+          <dl class="status">
+            <div>
+              <dt>Phase</dt>
+              <dd>Review</dd>
+            </div>
+            <div>
+              <dt>Organization</dt>
+              <dd>None</dd>
+            </div>
+            <div>
+              <dt>Funding raised</dt>
+              <dd>None</dd>
+            </div>
+            <div>
+              <dt>Infrastructure</dt>
+              <dd>None</dd>
+            </div>
+          </dl>
+          <p class="disclaimer">SETI@Home 2 is an independent proposal and is not affiliated with or endorsed by UC Berkeley's SETI@home project, Breakthrough Listen, or the SETI Institute.</p>
+        </div>
+        <svg class="hero-art" viewBox="0 0 640 600" aria-hidden="true">
+          <defs>
+            <linearGradient id="face" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f7fbff"/>
+              <stop offset="0.42" stop-color="#d5e0ea"/>
+              <stop offset="1" stop-color="#8ea0b2"/>
+            </linearGradient>
+            <radialGradient id="well" cx="45%" cy="42%" r="60%">
+              <stop offset="0" stop-color="#9eb4c6" stop-opacity="0.15"/>
+              <stop offset="1" stop-color="#1c3144" stop-opacity="0.45"/>
+            </radialGradient>
+          </defs>
+          <g fill="#fff">
+            <circle cx="520" cy="36" r="1.1" opacity=".7"/>
+            <circle cx="590" cy="110" r="1.2" opacity=".8"/>
+            <circle cx="40" cy="70" r="1" opacity=".55"/>
+            <circle cx="600" cy="220" r="1" opacity=".5"/>
+            <circle cx="470" cy="80" r="1" opacity=".45"/>
+          </g>
+          <polygon points="300,28 303.1,36 312,36.4 305.2,41.2 307.4,49.4 300,44.8 292.6,49.4 294.8,41.2 288,36.4 296.9,36" fill="#e7c98a"/>
+          <g fill="none" stroke="#7ec8ea" stroke-width="1.25" opacity=".7">
+            <path d="M48 500 C 160 468, 280 524, 400 486 S 560 508, 610 470"/>
+            <path d="M36 536 C 170 500, 300 560, 450 520 S 580 540, 620 508"/>
+          </g>
+          <g fill="none" stroke="#9adfff" stroke-width="1.4">
+            <rect x="70" y="492" width="18" height="13" rx="2"/>
+            <rect x="168" y="522" width="18" height="13" rx="2"/>
+            <rect x="286" y="486" width="18" height="13" rx="2"/>
+            <rect x="392" y="530" width="18" height="13" rx="2"/>
+            <rect x="498" y="492" width="18" height="13" rx="2"/>
+            <rect x="582" y="524" width="18" height="13" rx="2"/>
+          </g>
+          <g class="beams" fill="none" stroke-linecap="round">
+            <path class="beam" d="M248 168 L 79 498"/>
+            <path class="beam" d="M248 168 L 177 528"/>
+            <path class="beam" d="M248 168 L 295 492"/>
+            <path class="beam" d="M248 168 L 401 536"/>
+            <path class="beam" d="M248 168 L 507 498"/>
+            <path class="beam" d="M248 168 L 591 530"/>
+          </g>
+          <g transform="translate(36,48)">
+            <path d="M150 292 h58 l20 128 h-98 z" fill="#c5d3e0"/>
+            <path d="M112 416 h150 l14 20 H98 z" fill="#8ea3b5"/>
+            <g transform="rotate(-22 210 168)">
+              <ellipse cx="214" cy="176" rx="158" ry="118" fill="#6f8496"/>
+              <ellipse cx="198" cy="164" rx="152" ry="112" fill="url(#face)"/>
+              <ellipse cx="198" cy="164" rx="152" ry="112" fill="url(#well)"/>
+              <g stroke="#ffffff" stroke-opacity=".35" stroke-width="1.25">
+                <path d="M198 56 v216"/>
+                <path d="M70 164 h256"/>
+                <path d="M98 90 C 150 130, 170 150, 198 164"/>
+                <path d="M298 90 C 246 130, 226 150, 198 164"/>
+                <path d="M98 238 C 150 198, 170 178, 198 164"/>
+                <path d="M298 238 C 246 198, 226 178, 198 164"/>
+              </g>
+              <ellipse cx="198" cy="164" rx="152" ry="112" fill="none" stroke="#f7fbff" stroke-width="3"/>
+              <circle cx="198" cy="164" r="7" fill="#f4f8fb"/>
+              <circle cx="198" cy="164" r="3" fill="#8fdfff"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="section" id="why" aria-labelledby="why-title">
+      <div class="wrap">
+        <div class="ornament" aria-hidden="true"><span></span><svg width="14" height="14" viewBox="0 0 14 14"><polygon points="7,0 8.1,5 13,5.2 9.2,8.2 10.4,13 7,10.4 3.6,13 4.8,8.2 1,5.2 5.9,5" fill="#e7c98a"/></svg><span></span></div>
+        <p class="kicker">Why now</p>
+        <h2 id="why-title">The archives aged. The methods did too.</h2>
+        <p class="section-intro">The original SETI@home project distributed work from 1999 until it stopped sending tasks in 2020. It searched for a narrow kind of signal with the tools of that era, and it did not confirm a technosignature. That null result is the starting point, not an embarrassment. A null is only as strong as the search that produced it.</p>
+        <div class="why-grid">
+          <article class="card">
+            <p class="num">01</p>
+            <h3>Pattern recognition moved</h3>
+            <p>Variational autoencoders, density-based clustering, and modern anomaly detection are built for rare structure in messy data. They were not the tools inside the original SETI@home client. Asking whether they would surface anything that client missed is a reasonable scientific question. It is not a claim that the earlier work was careless.</p>
+          </article>
+          <article class="card">
+            <p class="num">02</p>
+            <h3>Others have already started</h3>
+            <p>This proposal does not claim to be the first use of machine learning in radio SETI. A 2026 review of Breakthrough Listen’s first decade describes unsupervised anomaly-detection campaigns on Green Bank data, and injection-and-recovery tests as part of how those searches are checked. The open question is narrower: whether an independent, documented reprocessing — with volunteer-scale compute, public methods, and a published null if that is the outcome — still adds something.</p>
+          </article>
+          <article class="card">
+            <p class="num">03</p>
+            <h3>A null can be the product</h3>
+            <p>If a careful rerun finds nothing that survives review, that result is worth writing down. It becomes a benchmark, and training material, for whoever analyzes the next telescope’s data. The point of the project is the documented outcome, not a discovery announcement.</p>
+          </article>
+        </div>
+        <aside class="sources">
+          <h3>Figures, with sources</h3>
+          <p>Nothing below is a claim that this proposal holds the data or the money.</p>
+          <ol>
+            <li>SETI@home ran as a volunteer computing project from 1999 and stopped distributing work in 2020, without a confirmed extraterrestrial signal. <a href="https://en.wikipedia.org/wiki/SETI%40home">SETI@home, Wikipedia</a>.</li>
+            <li>On 20 July 2015, Breakthrough Listen was announced as a ten-year program with a stated commitment of $100&nbsp;million, and with the intention that the data be open. That commitment funded Breakthrough Listen. It is not funding for SETI@Home 2. <a href="https://breakthroughinitiatives.org/news/1">Breakthrough Initiatives, announcement</a>.</li>
+            <li>Breakthrough Listen Data Release 1.0 was a defined public set of almost 1&nbsp;petabyte of raw and reduced data. <a href="https://doi.org/10.1088/1538-3873/ab3e82">Lebofsky et al., 2019, Publications of the Astronomical Society of the Pacific</a>.</li>
+            <li>As of March 2026, Breakthrough Listen storage across telescope sites and the archive was about 42&nbsp;PB of capacity, with about 31&nbsp;PB in use. That is an inventory of their systems, not a single public download, and this proposal has no access agreement. The same paper is the source for the anomaly-detection work mentioned above. <a href="https://arxiv.org/abs/2610.07482">MacMahon and Czech, 2026, arXiv:2610.07482</a>.</li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="premise" aria-labelledby="premise-title">
+      <div class="wrap">
+        <p class="kicker">The premise</p>
+        <h2 id="premise-title">A reanalysis. Not a new sky survey.</h2>
+        <p class="section-intro">Given what was already recorded, would today’s pattern recognition surface candidates that earlier pipelines missed? The proposal is scoped to that question. It is in review. No organization has been formed, no funding has been raised, and no computational infrastructure has been stood up. Further steps wait on human review, and on at least one other person willing to take the work further.</p>
+        <div class="split">
+          <article class="card">
+            <h3>What it would try to do</h3>
+            <ul>
+              <li>Reprocess publicly available, or previously analyzed, radio SETI archives — including Breakthrough Listen public data and the original SETI@home corpus where those data are actually accessible.</li>
+              <li>Use unsupervised and semi-supervised methods suited to rare events: variational autoencoders, density-based clustering, and anomaly detection.</li>
+              <li>Where a large model is useful, run it in a memory-efficient way, a layer at a time if needed, so a consumer GPU could take part through a BOINC-style client.</li>
+              <li>Keep a small coordination service — the “Master Node” in the notes — for handing out work, collecting results, and tracking which checks a candidate has passed.</li>
+              <li>Treat a negative result as a result, and publish the method either way.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>What this is not</h3>
+            <ul>
+              <li>Not a request for immediate funding, incorporation, or a co-founder.</li>
+              <li>Not an assertion that earlier SETI work was flawed.</li>
+              <li>Not a plan to operate telescopes or to collect new data in the near term.</li>
+              <li>Not tied to any single model, library, or vendor.</li>
+              <li>Not a claim that extraterrestrial intelligence will be found.</li>
+              <li>Not a partnership with any observatory, university, funding agency, or existing SETI program. No such body endorses this page.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method" aria-labelledby="method-title">
+      <div class="wrap">
+        <p class="kicker">Methodology</p>
+        <h2 id="method-title">Six steps, from spectrogram to a candidate worth a person’s time</h2>
+        <p class="section-intro">The pipeline below is the scientific shape of the proposal. It is not software that runs today. AI is allowed to nominate. It is not allowed to conclude.</p>
+        <ol class="pipeline">
+          <li class="step">
+            <h3>Raw spectrograms</h3>
+            <p>Start from time–frequency spectrograms: intensity across frequency and time, the usual picture of a radio observation. The input is archival data from radio telescopes, not a new campaign. Which files are public, complete, and worth the compute is one of the questions for reviewers.</p>
+          </li>
+          <li class="step">
+            <h3>Preprocessing</h3>
+            <p>Clean, calibrate, and put observations on a common scale before any model sees them. The usual enemies are instrumental drift and radio-frequency interference — terrestrial signals that can look interesting if you are careless.</p>
+            <ul>
+              <li>Flag radio-frequency interference.</li>
+              <li>Calibrate.</li>
+              <li>Normalize.</li>
+            </ul>
+          </li>
+          <li class="step">
+            <h3>AI anomaly detection</h3>
+            <p>Two views of one idea: learn what ordinary data looks like, then flag what does not fit. High reconstruction error, or a point outside a dense cluster, is a reason to look. It is not a discovery.</p>
+            <div class="pair">
+              <div>
+                <h4>Variational autoencoder</h4>
+                <p>A spectrogram is compressed into a smaller latent description and then rebuilt. The model is trained on the bulk of “normal” structure. A patch that will not rebuild cleanly is the anomaly. No such model has been trained for this proposal.</p>
+              </div>
+              <div>
+                <h4>Density clustering</h4>
+                <p>Similar signals are grouped. Points that fall outside the dense groups are kept for ranking. The notes name HDBSCAN as a concrete algorithm. The requirement is density-based clustering, not one library.</p>
+              </div>
+            </div>
+          </li>
+          <li class="step">
+            <h3>Ranking</h3>
+            <p>Anomalies would be ordered by how unusual they are, how rarely that pattern appears, and how strong they are against the local noise. A rank decides what a person reads next. It does not decide what is true. No scores exist, because no data has been scored.</p>
+          </li>
+          <li class="step">
+            <h3>Injected-signal validation</h3>
+            <p>Known synthetic signals are buried in real observations. The pipeline earns trust only if it recovers those signals at a measured rate, and if it does not light up in the same way where nothing was planted. This test is mandatory in the proposal. It has not been built.</p>
+          </li>
+          <li class="step">
+            <h3>Multi-telescope confirmation</h3>
+            <p>A hit in one archive does not establish an astrophysical origin. The proposal requires a second instrument, and a human review, before any candidate is treated as interesting. No observatory has been asked, and none has agreed.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="architecture" aria-labelledby="architecture-title">
+      <div class="wrap">
+        <p class="kicker">Architecture</p>
+        <h2 id="architecture-title">A Master Node, public archives, and GPUs that have not joined</h2>
+        <p class="section-intro">The drawing is a design for a distributed processing network. Read it as a proposal diagram. The Master Node is not running. No archive is connected. No volunteer computer has joined, and there is no client to install.</p>
+        <div class="why-grid">
+          <article class="card">
+            <h3>Public archives in</h3>
+            <p>The design assumes raw observations, filterbank products, and metadata from programs that already release data, Breakthrough Listen among them. Telescopes named on the diagram — Green Bank, Parkes, MeerKAT, and others — are examples of where such data has come from. Naming them is not a data-sharing agreement.</p>
+          </article>
+          <article class="card">
+            <h3>Master Node</h3>
+            <p>A small, fault-tolerant coordination service on cloud virtual machines, with failover. It would schedule work, collect returned results, and keep the validation state of each candidate. “Resilient” here means the design wants a spare. It does not mean a cluster exists.</p>
+          </article>
+          <article class="card">
+            <h3>Volunteer GPU nodes</h3>
+            <p>The client in the notes is BOINC plus Docker, running memory-efficient, layer-wise inference so a larger model can pass through a consumer GPU a layer at a time. AirLLM is one open technique of that kind, not a commitment to a product. The tagline “Your GPU” is the ambition. The count of volunteers today is zero.</p>
+          </article>
+        </div>
+        <figure class="figure">
+          <img src="assets/architecture.webp" width="1168" height="784" alt="Proposed architecture diagram titled SETI@Home 2 Architecture. A central Master Node, drawn as a resilient cloud cluster, would coordinate work. On the left, public Breakthrough Listen archives (raw observations, filterbank data, and a metadata catalog) would flow in. On the right, an AI model repository, a result database, and an expert review queue would exchange models, validated results, and review decisions. Along the bottom, volunteer GPU computers would receive work units and return results. The footer lists design principles: fault-tolerant, scalable, secure, open science, community driven." loading="lazy" decoding="async">
+          <figcaption>Proposed architecture, from the v1.0 archive. No node is operating, no feed is connected, and the row of computers is a drawing of a hope. It is not a roster of volunteers.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="plan" aria-labelledby="plan-title">
+      <div class="wrap">
+        <p class="kicker">Phased plan</p>
+        <h2 id="plan-title">Five phases, none of them started</h2>
+        <p class="section-intro">The months below are counted from a future start that has not been set. They describe sequence, so a reviewer can see what would have to come first. They are not a schedule, a budget, or a staff plan.</p>
+        <ol class="phases">
+          <li class="phase">
+            <p class="when">Phase 1 · Months 1–3</p>
+            <h3>Foundation</h3>
+            <p>Find out which data can actually be used, and on what terms. Stand up a small Master Node on cloud virtual machines with failover. Prototype a client that can run a memory-efficient model inside Docker, under BOINC.</p>
+          </li>
+          <li class="phase">
+            <p class="when">Phase 2 · Months 3–6</p>
+            <h3>AI pipeline</h3>
+            <p>Implement a variational autoencoder and density-based clustering. Build the injected-signal suite before any ranking is trusted. The test comes before the leaderboard.</p>
+          </li>
+          <li class="phase">
+            <p class="when">Phase 3 · Months 6–9</p>
+            <h3>Pilot</h3>
+            <p>A volunteer beta, with Dockerized clients, on a modest public subset. The pilot exists to measure false positives and the recovery of injected signals. It does not exist to announce candidates.</p>
+          </li>
+          <li class="phase">
+            <p class="when">Phase 4 · Months 9–18</p>
+            <h3>Scale</h3>
+            <p>Only if the pilot’s validation holds: extend processing toward the archive that reviewers and data holders have actually agreed to, with continuous monitoring and ranking.</p>
+          </li>
+          <li class="phase">
+            <p class="when">Phase 5 · Ongoing</p>
+            <h3>Follow-up</h3>
+            <p>Anything that still ranks high goes to a person. Only after that would anyone ask an observatory for independent observing time. Nothing of that kind is arranged. Results, including a null, would be written up in public.</p>
+          </li>
+        </ol>
+        <figure class="figure">
+          <img src="assets/timeline.webp" width="1168" height="784" alt="Planning poster titled SETI@Home 2 Project Creation Timeline, from concept to sustained discovery. Eight stages run left to right: Foundation (define vision, goals, and principles), Architecture (design the system and a technical roadmap), Data partnerships (establish collaborations and secure data access), AI models (develop and train models for detection and classification), Pilot (test end to end on pilot data), Scaling (grow infrastructure and distributed computing), Funding (secure sustainable funding and community support), and Operations (launch, monitor, and continue). A legend defines icons for a radio telescope, a neural network, cloud infrastructure, partnerships, and a milestone mark. No stage is checked off." loading="lazy" decoding="async">
+          <figcaption>A second sketch from the same archive, in eight stages rather than five. “Data partnerships,” “Funding,” and “Operations” are hopes for later. None of these stages has started, and no milestone has been achieved.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="validate" aria-labelledby="validate-title">
+      <div class="wrap">
+        <p class="kicker">Trust but verify</p>
+        <h2 id="validate-title">A candidate is boring until it survives</h2>
+        <p class="section-intro">Every stage is meant to be reproducible and auditable. The proposal rejects unsubstantiated claims. Sensational findings are a failure mode, not a goal. No one should describe a hit from this effort as interesting until the checks below have happened — and those checks are a policy, not a pipeline that exists.</p>
+        <div class="pillars">
+          <article class="pillar">
+            <h3>Injected signals</h3>
+            <p>Synthetic technosignatures, planted into real data by someone who knows the answer, are the calibration. Recovery rate, and the rate of false excitement on unplanted data, are the numbers that would matter.</p>
+          </article>
+          <article class="pillar">
+            <h3>A second telescope</h3>
+            <p>A signal that appears in one recording and nowhere else is, until proven otherwise, interference or a processing artifact. Confirmation means an independent instrument, not a second pass of the same file.</p>
+          </article>
+          <article class="pillar">
+            <h3>A person, before the adjective</h3>
+            <p>Human review sits in front of any decision to treat a candidate as interesting, to ask for follow-up time, or to say so in public. Automation can sort. It cannot declare.</p>
+          </article>
+          <article class="pillar">
+            <h3>The null, on the record</h3>
+            <p>If the checks wipe the slate clean, that is the result to publish. Methods, models, and negative findings would be written so someone else can rerun them. Open science here is a constraint, not a slogan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="funding" aria-labelledby="funding-title">
+      <div class="wrap">
+        <p class="kicker">Funding and partnerships</p>
+        <h2 id="funding-title">Avenues, not commitments</h2>
+        <p class="section-intro">No money has been raised. No grant has been filed. No sponsor, foundation, agency, observatory, or company is attached to this proposal. The four paths below are ways a project like this could someday be supported. They are not a forecast.</p>
+        <div class="avenues">
+          <article class="avenue">
+            <h3>Private philanthropy</h3>
+            <p>People and foundations that already fund basic science are the obvious place a later request could go. The 2015 Breakthrough Listen commitment, linked above, is a historical example of philanthropic SETI funding. It belongs to that program.</p>
+          </article>
+          <article class="avenue">
+            <h3>Public-science grants</h3>
+            <p>Citizen-science and research grants are a possible later application. None has been written. A long history of public funding for astronomy outreach is not support for SETI@Home 2, and no funding agency is a partner here.</p>
+          </article>
+          <article class="avenue">
+            <h3>Data access, not a telescope of our own</h3>
+            <p>The work needs permission to read data, or a clear public license that already grants it. An observatory named in a diagram is a place data has historically been taken. It is not a collaborator. No agreement has been asked for or signed.</p>
+          </article>
+          <article class="avenue">
+            <h3>In-kind and open-source help</h3>
+            <p>Sponsored cloud credits, community tooling, or advice from people who run volunteer-computing projects could matter later, because the operating idea is deliberately lean. Nobody has offered that help. There is no BOINC project to join.</p>
+          </article>
+        </div>
+        <figure class="figure">
+          <img src="assets/funding.webp" width="1168" height="784" alt="Poster titled SETI@Home 2 Funding Sources. It sketches four kinds of support: private philanthropy, citizen-science grants, observatory partnerships, and open-source sponsorships. Each column prints a historical precedent from other efforts, including dollar figures next to Breakthrough Listen and the SETI Institute, and names of agencies and observatories. Those precedents describe other organizations. They are not funds, grants, or partnerships of this proposal." loading="lazy" decoding="async">
+          <figcaption>Historical examples, not commitments. Dollar figures, agencies, and observatories printed on this poster describe other projects. SETI@Home 2 has raised no money, filed no grant, and signed no partnership. Do not read the poster as a budget or as an endorsement.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="review" aria-labelledby="review-title">
+      <div class="wrap">
+        <p class="kicker">Call for reviewers</p>
+        <h2 id="review-title">Read it, then try to break it</h2>
+        <p class="section-intro">Phil Rail is asking for a small number of people to sanity-check the idea before any further commitment. Skeptical comments are as useful as encouraging ones. You are not being asked for money, time on a telescope, or to co-found anything. A short note is enough. There is no deadline.</p>
+        <ol class="questions">
+          <li>Is the scientific premise sound — is a modern reanalysis of existing radio SETI archives a reasonable next step?</li>
+          <li>Are injected signals, a second telescope, and human review enough to keep the effort credible?</li>
+          <li>Which technical, statistical, or social risks does the outline under-weight?</li>
+          <li>Which parts of the public archives are realistically accessible, and worth doing first?</li>
+          <li>Does the framing stay clear without over-claiming, and is it clear enough to attract competent collaborators?</li>
+        </ol>
+        <div class="review-panel">
+          <h3>How to respond</h3>
+          <p>Open an issue to share review feedback. Issues on this repository are public, so leave out anything you want kept private. You will not be described on this page as a reviewer or a supporter unless you explicitly agree.</p>
+          <div class="actions">
+            <a class="btn btn-gold" href="https://github.com/Isowix/seti-home-2/issues/new?title=Review%20feedback%20on%20SETI%40Home%202">Open an issue to share review feedback</a>
+            <a class="btn btn-ghost" href="https://github.com/Isowix/seti-home-2/releases/download/v1.0/SETI_Home_2_Official_Archive_v1.0.zip">Download the proposal</a>
+          </div>
+          <p class="fine">The issue tracker is the contact path. There is no phone number and no postal address for this proposal. The <a href="https://github.com/Isowix/seti-home-2">repository</a> and the <a href="https://github.com/Isowix/seti-home-2/releases/tag/v1.0">v1.0 release</a> are the record.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">SETI@Home 2 is an independent proposal and is not affiliated with or endorsed by UC Berkeley's SETI@home project, Breakthrough Listen, or the SETI Institute.</p>
+      <ul class="foot-links">
+        <li><a href="https://github.com/Isowix/seti-home-2">Repository</a></li>
+        <li><a href="https://github.com/Isowix/seti-home-2/releases/tag/v1.0">Release v1.0</a></li>
+        <li><a href="https://github.com/Isowix/seti-home-2/releases/download/v1.0/SETI_Home_2_Official_Archive_v1.0.zip">Download the proposal</a></li>
+        <li><a href="https://github.com/Isowix/seti-home-2/issues">Issues</a></li>
+      </ul>
+      <p class="colophon">Proposed by Phil Rail. Reviewer briefing dated 22 November 2026. Archive v1.0. No observatory, funding agency, or existing SETI program participates.</p>
+    </div>
+  </footer>
+  <script src="assets/main.js"></script>
+</body>
+</html>
