@@ -13,9 +13,22 @@
 
     nav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
+        var href = link.getAttribute("href") || "";
+        if (href.charAt(0) === "#") {
+          var target = document.getElementById(href.slice(1));
+          if (target && target.tagName === "DETAILS") target.open = true;
+        }
         if (window.matchMedia("(max-width: 1079px)").matches) setOpen(false);
       });
     });
+
+    function openFromHash() {
+      var id = (location.hash || "").slice(1);
+      var target = id && document.getElementById(id);
+      if (target && target.tagName === "DETAILS") target.open = true;
+    }
+    window.addEventListener("hashchange", openFromHash);
+    openFromHash();
 
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") setOpen(false);
