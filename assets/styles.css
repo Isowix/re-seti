@@ -1206,6 +1206,48 @@ h2 {
   background: #0b1524;
 }
 
+.chart-stack {
+  display: none;
+  gap: 0.75rem;
+}
+
+.chart-stack p {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  background: rgba(14, 26, 44, 0.92);
+  color: var(--muted);
+}
+
+.chart-stack strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 420px) {
+  .chart-scroll {
+    display: none;
+  }
+
+  .chart-stack {
+    display: grid;
+  }
+
+  .chart-scroll-hint {
+    display: none;
+  }
+
+  .tagline {
+    font-size: clamp(1.45rem, 6.2vw, 1.8rem);
+  }
+}
+
 .chart-scroll svg {
   display: block;
   width: 100%;

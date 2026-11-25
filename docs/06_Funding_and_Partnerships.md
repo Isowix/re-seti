@@ -1,8 +1,8 @@
 # Funding and Partnerships
 
-*RE-SETI proposal archive v1.2.1 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.3 · 24 November 2026 · Prepared by Phil Rail*
 
-> **Status.** No funding has been sought or raised, and no partnerships exist. This document lists *possible* avenues to explore after review. Naming an organization here does not imply it has been contacted or has shown interest.
+> **Stage: proposal in review.** No funding has been sought or raised, and no partnerships exist. This document lists *possible* avenues to explore after review. Naming an organization here does not imply it has been contacted or has shown interest.
 
 ## Why the model can be lean
 
