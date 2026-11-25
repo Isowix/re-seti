@@ -29,6 +29,8 @@
     <style>
       #site-nav { display: flex !important; position: static !important; flex-wrap: wrap; }
       .nav-toggle { display: none !important; }
+      details.fold { display: block; }
+      details.fold:not([open]) > .fold-body { display: block; }
     </style>
   </noscript>
 </head>
@@ -52,20 +54,18 @@
       <span class="close-label">Close</span>
     </button>
     <nav id="site-nav" aria-label="Page">
-      <a href="#why">Why now</a>
-      <a href="#premise">Premise</a>
+      <a href="#why">Why</a>
+      <a href="#hypothesis">Hypothesis</a>
       <a href="#method">Method</a>
-      <a href="#architecture">Architecture</a>
+      <a href="#phase0">Phase 0</a>
       <a href="#plan">Plan</a>
-      <a href="#validate">Validate</a>
-        <a href="#funding">Funding</a>
-        <a href="#documents">Docs</a>
-        <a href="#review">Review</a>
+      <a href="#architecture">Build</a>
+      <a href="#validate">Checks</a>
+      <a href="#review">Ask</a>
+      <a href="#author">Author</a>
+      <a href="#documents">Documents</a>
     </nav>
     <a class="btn btn-gold btn-small header-download" href="https://github.com/Isowix/re-seti/releases/download/v1.3/07_Briefing_Note_for_Reviewers.pdf">
-      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-        <path d="M8 1.5v8M4.5 6.5 8 10l3.5-3.5M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
       <span class="label">Briefing</span>
       <span class="vh"> note, PDF</span>
     </a>
@@ -75,360 +75,157 @@
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="wrap hero-grid">
         <div>
-          <p class="kicker">An AI reanalysis of archival radio SETI data.</p>
           <h1 id="hero-title">RE-SETI</h1>
           <p class="tagline">Would today's methods find what earlier searches missed?<br>Trust but verify.</p>
-          <p class="lede">A proposal to look again at radio data that has already been recorded — the original SETI@home corpus, where it can still be read, and the public Breakthrough Listen archive — with the anomaly-detection methods of this decade.</p>
-          <p class="byline"><strong>Stage: proposal in review.</strong> An independent proposal by Phil Rail, seeking reviewers and scientific or technical collaborators. Not a request for a business co-founder, for funding, or for incorporation.</p>
+          <p class="lede">A proposal to re-read archival radio SETI data and to publish a measured result either way.</p>
+          <p class="stage">Stage: proposal in review.</p>
           <div class="actions" id="download">
             <a class="btn btn-gold" href="https://github.com/Isowix/re-seti/releases/download/v1.3/07_Briefing_Note_for_Reviewers.pdf">Read the briefing note (PDF)</a>
-            <a class="btn btn-ghost" href="https://github.com/Isowix/re-seti/releases/download/v1.3/RE-SETI_Proposal_Archive_v1.3.zip">Download the full proposal archive (zip)</a>
           </div>
-          <p class="fine">Start with the briefing note. The zip is the full v1.3 archive, in Markdown and PDF. Neither file is a science client, a model, or telescope data. A copy of the briefing also sits at <a href="docs/pdf/07_Briefing_Note_for_Reviewers.pdf">docs/pdf/07_Briefing_Note_for_Reviewers.pdf</a>.</p>
+          <p><a class="quiet-link" href="https://github.com/Isowix/re-seti/releases/download/v1.3/RE-SETI_Proposal_Archive_v1.3.zip">Full proposal archive (zip)</a></p>
         </div>
         <figure class="hero-figure">
-          <p class="badge">Illustrative</p>
           <div class="waterfall">
-            <canvas class="waterfall-canvas" width="360" height="220">A sketch of a radio waterfall. A bright diagonal is a drifting narrowband tone. Steady horizontal lines and full-band flashes stand in for interference.</canvas>
+            <canvas class="waterfall-canvas" width="360" height="220">A sketch of a radio waterfall. A bright diagonal is a drifting narrowband tone. Steady lines and full-band flashes stand in for interference.</canvas>
             <p class="axes"><span>Frequency →</span><span>Newer time at the bottom</span></p>
           </div>
-          <ul class="legend">
-            <li><span class="swatch sig" aria-hidden="true"></span> Cyan diagonal: a narrowband tone that drifts. An astronomical signal tends to do that as the Earth moves.</li>
-            <li><span class="swatch rfi" aria-hidden="true"></span> Gold line that stays put: a tone on one frequency. A lot of interference looks like that.</li>
-            <li><span class="swatch burst" aria-hidden="true"></span> A warm flash across every channel at once. That is also typical interference, not a distant transmitter.</li>
-          </ul>
-          <figcaption>Illustrative, not an observation. The search the proposal describes is for a drift, and it has to refuse the lines that do not drift. No telescope recorded this frame.</figcaption>
+          <figcaption>Not an observation. A drifting narrow line is the kind of thing a search looks for. Steady tones, and flashes across every channel, are typical interference.</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="section" id="why" aria-labelledby="why-title">
-      <div class="wrap">
-        <div class="ornament" aria-hidden="true"><span></span><svg width="14" height="14" viewBox="0 0 14 14"><polygon points="7,0 8.1,5 13,5.2 9.2,8.2 10.4,13 7,10.4 3.6,13 4.8,8.2 1,5.2 5.9,5" fill="#e7c98a"/></svg><span></span></div>
-        <p class="kicker">Why now</p>
-        <h2 id="why-title">The archives aged. The methods did too.</h2>
-        <p class="section-intro">The original SETI@home project distributed work from 1999 until it stopped sending tasks in 2020. It searched for a narrow kind of signal with the tools of that era, and it did not confirm a technosignature. That null result is the starting point, not an embarrassment. A null is only as strong as the search that produced it.</p>
-        <div class="why-grid">
-          <article class="card">
-            <p class="num">01</p>
-            <h3>Pattern recognition moved</h3>
-            <p>Variational autoencoders, density-based clustering, and modern anomaly detection are built for rare structure in messy data. They were not the tools inside the original SETI@home client. Asking whether they would surface anything that client missed is a reasonable scientific question. It is not a claim that the earlier work was careless.</p>
-          </article>
-          <article class="card">
-            <p class="num">02</p>
-            <h3>Others have already started</h3>
-            <p>This proposal does not claim to be the first use of machine learning in radio SETI. A 2026 review of Breakthrough Listen’s first decade describes unsupervised anomaly-detection campaigns on Green Bank data, among them the GLOBULAR clustering method of Jacobson-Bell et al. (2025), which applies HDBSCAN to turboSETI hits, and injection-and-recovery tests as part of how those searches are checked. The open question is narrower: whether an independent, documented reprocessing still adds something: Ma et al. (2023) reported eight signals of interest. Re-observations on 21 May 2022 did not re-detect them; the paper reported they are not persistent and did not claim a detection. They are not treated here as open candidates. A re-reduction of the public data can still be a methods check. Completeness measured on every reanalyzed subset, turboSETI, a β-VAE and GLOBULAR clustering compared on identical data, an open pipeline anyone can rerun, and a labelled benchmark for future telescopes.</p>
-          </article>
-          <article class="card">
-            <p class="num">03</p>
-            <h3>A null can be the product</h3>
-            <p>If a careful rerun finds nothing that survives review, that result is worth writing down. It becomes a benchmark, and training material, for whoever analyzes the next telescope’s data. The point of the project is the documented outcome, not a discovery announcement.</p>
-          </article>
+    <div class="wrap">
+      <details class="fold" id="why">
+        <summary><h2>Why look again?</h2></summary>
+        <div class="fold-body prose">
+          <p>SETI@home ran as a volunteer computing project from 1999 until it stopped distributing work on 31 March 2020, without a confirmed technosignature. A null result is only as strong as the search that produced it. Asking whether newer methods would surface anything the original client missed is a reasonable question, not a claim that the earlier work was careless.</p>
+          <p>Sources: Anderson et al., <cite>Communications of the ACM</cite> 45, 56–61 (2002), <a href="https://doi.org/10.1145/581571.581573">doi:10.1145/581571.581573</a>; SETI@home project news, 2 March 2020; Anderson et al. and Korpela et al., <cite>The Astronomical Journal</cite> 170, 111 and 112 (2025).</p>
+          <p>Variational autoencoders, density-based clustering, and modern anomaly detection are built for rare structure in messy data. They were not the tools inside the original SETI@home client.</p>
+          <p>This proposal does not claim to be the first use of machine learning in radio SETI. A 2026 review of Breakthrough Listen’s first decade describes unsupervised anomaly-detection campaigns on Green Bank data, among them the GLOBULAR clustering method of Jacobson-Bell et al. (2025), which applies HDBSCAN to turboSETI hits, and injection-and-recovery tests as part of how those searches are checked. GLOBULAR’s published trade-off is far fewer false positives, with some injected signals lost. Sources: Jacobson-Bell et al., <cite>The Astronomical Journal</cite> 169, 206 (2025), <a href="https://doi.org/10.3847/1538-3881/adb8e7">doi:10.3847/1538-3881/adb8e7</a>; MacMahon and Czech, <a href="https://arxiv.org/abs/2610.07482">arXiv:2610.07482</a> (2026).</p>
+          <p>On 20 July 2015, Breakthrough Listen was announced as a ten-year program with a stated commitment of $100 million, and with the intention that the data be open. That commitment funded Breakthrough Listen, not RE-SETI (<a href="https://breakthroughinitiatives.org/news/1">Breakthrough Initiatives, announcement</a>). Data Release 1.0 was a defined public set of almost 1 petabyte of raw and reduced data (<a href="https://doi.org/10.1088/1538-3873/ab3e82">Lebofsky et al., 2019, <cite>Publications of the Astronomical Society of the Pacific</cite></a>). As of March 2026, Breakthrough Listen storage across telescope sites and the archive was about 42 PB of capacity, with about 31 PB in use — an inventory of their systems, not a single public download, and this proposal has no access agreement (the same MacMahon and Czech paper).</p>
+          <p>Nothing in this section is a claim that this proposal holds the data or the money.</p>
+          <p>A useful product can be a documented null: completeness measured on every reanalyzed subset, turboSETI, a β-VAE and GLOBULAR compared on identical data, an open pipeline, and a labelled benchmark for future telescopes.</p>
         </div>
-        <aside class="sources">
-          <h3>Figures, with sources</h3>
-          <p>Nothing below is a claim that this proposal holds the data or the money.</p>
+      </details>
+
+      <details class="fold" id="hypothesis">
+        <summary><h2>What would be tested first?</h2></summary>
+        <div class="fold-body prose">
+          <p>The first, falsifiable test is whether an anomaly-detection stage can recover narrowband signals whose frequency drift is not constant. turboSETI’s search uses a grid of constant drift rates and is not designed for that class. Ma et al. (2023) reported eight signals of interest from a cadence-aware β-VAE search, and explicitly set aside signals whose drift changed between ON scans. Re-observations on 21 May 2022 did not re-detect those eight; the paper reported they are not persistent and did not claim a detection. They are not treated here as open candidates. A re-reduction of the public data can still be a methods check. Published injection tests have mostly used linear drift, so the evidence that a new method recovers non-linear drift is thin. The pilot is built to measure that claim, with go/kill criteria; it is not a premise.</p>
+        </div>
+      </details>
+
+      <details class="fold" id="method">
+        <summary><h2>How would it work?</h2></summary>
+        <div class="fold-body prose">
+          <p>The pipeline is a design, not software that runs today. A model may nominate; it may not conclude. The design does not depend on any single model, library, or vendor.</p>
+          <p>Test signals are planted in the raw or lightly prepared data, then flagging, detection and ranking are run, so the recovery rate measures the whole chain:</p>
           <ol>
-            <li>SETI@home ran as a volunteer computing project from 1999 and stopped distributing work on 31 March 2020, without a confirmed extraterrestrial signal. Sources: Anderson et al., <cite>Communications of the ACM</cite> 45, 56–61 (2002), <a href="https://doi.org/10.1145/581571.581573">doi:10.1145/581571.581573</a>; SETI@home project news, 2 March 2020; Anderson et al. and Korpela et al., <cite>The Astronomical Journal</cite> 170, 111 and 112 (2025).</li>
-            <li>On 20 July 2015, Breakthrough Listen was announced as a ten-year program with a stated commitment of $100&nbsp;million, and with the intention that the data be open. That commitment funded Breakthrough Listen. It is not funding for RE-SETI. <a href="https://breakthroughinitiatives.org/news/1">Breakthrough Initiatives, announcement</a>.</li>
-            <li>Breakthrough Listen Data Release 1.0 was a defined public set of almost 1&nbsp;petabyte of raw and reduced data. <a href="https://doi.org/10.1088/1538-3873/ab3e82">Lebofsky et al., 2019, Publications of the Astronomical Society of the Pacific</a>.</li>
-            <li>As of March 2026, Breakthrough Listen storage across telescope sites and the archive was about 42&nbsp;PB of capacity, with about 31&nbsp;PB in use. That is an inventory of their systems, not a single public download, and this proposal has no access agreement. The same paper is the source for the anomaly-detection work mentioned above. <a href="https://arxiv.org/abs/2610.07482">MacMahon and Czech, 2026, arXiv:2610.07482</a>.</li>
-            <li>GLOBULAR clustering (HDBSCAN on turboSETI hits): Jacobson-Bell et al., <cite>The Astronomical Journal</cite> 169, 206 (2025), <a href="https://doi.org/10.3847/1538-3881/adb8e7">doi:10.3847/1538-3881/adb8e7</a>.</li>
+            <li>Spectrogram — time against frequency, from an archive, not a new campaign.</li>
+            <li>Inject — plant the test signals.</li>
+            <li>Clean — flag interference, calibrate, normalize.</li>
+            <li>Detect — a model nominates what does not fit.</li>
+            <li>Rank — order what is unusual, rare, and strong against the local noise. A rank decides what a person reads next, not what is true.</li>
+            <li>Score — apply a pre-registered threshold.</li>
           </ol>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="premise" aria-labelledby="premise-title">
-      <div class="wrap">
-        <p class="kicker">The premise</p>
-        <h2 id="premise-title">A reanalysis. Not a new sky survey.</h2>
-        <p class="section-intro">Given what was already recorded, would today’s pattern recognition surface candidates that earlier pipelines missed? The proposal is scoped to that question. It is in review. No organization has been formed, no funding has been raised, and no computational infrastructure has been stood up. Further steps wait on human review, and on at least one other person willing to take the work further.</p>
-        <div class="split">
-          <article class="card">
-            <h3>What it would try to do</h3>
-            <ul>
-              <li>Reprocess publicly available, or previously analyzed, radio SETI archives — including Breakthrough Listen public data and the original SETI@home corpus where those data are actually accessible.</li>
-              <li>Use unsupervised and semi-supervised methods suited to rare events: variational autoencoders, density-based clustering, and anomaly detection.</li>
-              <li>Use compact detection models that fit on any consumer GPU. Start with a single-GPU pilot on public data; a BOINC-style volunteer client follows only if the pilot shows it is needed and the data can be delivered affordably.</li>
-              <li>Keep a small coordination service — the “Master Node” in the notes — for handing out work, collecting results, and tracking which checks a candidate has passed.</li>
-              <li>Treat a negative result as a result, and publish the method either way.</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>What this is not</h3>
-            <ul>
-              <li>Not a request for immediate funding, incorporation, or a business co-founder. Scientific or technical collaboration is welcome.</li>
-              <li>Not an assertion that earlier SETI work was flawed.</li>
-              <li>Not a plan to operate telescopes or to collect new data in the near term.</li>
-              <li>Not tied to any single model, library, or vendor.</li>
-              <li>Not a claim that extraterrestrial intelligence will be found.</li>
-              <li>Not a partnership with any observatory, university, funding agency, or existing SETI program. No such body endorses this page.</li>
-            </ul>
-          </article>
+          <p>A variational autoencoder would be trained on the bulk of “normal” structure. “Normal” means the empirical archive, including ordinary interference, not a clean sky. Training follows Ma et al. (2023): it is cadence-aware (ON versus OFF), uses real backgrounds with synthetic labels, and holds out known dirty bands. Residual contamination of backgrounds is a known risk, not a solved one. A patch that will not rebuild cleanly is the anomaly. No such model has been trained for this proposal.</p>
+          <p>Density clustering would group similar signals and keep points outside the dense groups for ranking. The notes would run GLOBULAR and also test clustering on the learned representations, and would re-measure GLOBULAR’s published trade-off on this set.</p>
+          <p>No scores exist, because no data has been scored. Score thresholds and a false-discovery-rate rule (for example Benjamini–Hochberg, with the empirical null taken from empty and shuffled-cadence controls) would be registered before any large-archive run.</p>
         </div>
-      </div>
-    </section>
+      </details>
 
-    <section class="section" id="method" aria-labelledby="method-title">
-      <div class="wrap">
-        <p class="kicker">Methodology</p>
-        <h2 id="method-title">Six steps, from spectrogram to a candidate worth a person’s time</h2>
-        <p class="section-intro">The pipeline below is the scientific shape of the proposal. It is not software that runs today. AI is allowed to nominate. It is not allowed to conclude. The picture in the header is the kind of data step one would start from.</p>
-        <p>The first, falsifiable test is whether an anomaly-detection stage can recover narrowband signals whose frequency drift is not constant — a class turboSETI's constant-drift-rate search is not designed to catch, and that Ma et al. (2023) explicitly set aside. Published injection tests have mostly used linear drift, so the evidence for this claim is thin; it is a pilot test with go/kill criteria, not a premise.</p>
-        <figure class="diagram">
-          <p class="badge">Injection-recovery wraps the pipeline</p>
-          <ol class="flow">
-            <li>
-              <span class="flow-index">1</span>
-              <h3>Spectrogram</h3>
-              <p>Time against frequency, from an archive.</p>
-            </li>
-            <li>
-              <span class="flow-index">2</span>
-              <h3>Inject</h3>
-              <p>Plant test signals in the raw or lightly prepared data.</p>
-            </li>
-            <li>
-              <span class="flow-index">3</span>
-              <h3>Clean</h3>
-              <p>Flag interference, calibrate, normalize.</p>
-            </li>
-            <li>
-              <span class="flow-index">4</span>
-              <h3>Detect</h3>
-              <p>A model nominates what does not fit.</p>
-            </li>
-            <li>
-              <span class="flow-index">5</span>
-              <h3>Rank</h3>
-              <p>Order what is unusual, rare, and strong.</p>
-            </li>
-            <li class="gate">
-              <span class="flow-index">6</span>
-              <h3>Score</h3>
-              <p>Score what survived. Then an archival cross-match, and a person.</p>
-            </li>
-          </ol>
-          <figcaption>Injection-recovery wraps the pipeline: planted signals go in before cleaning, detection, and ranking. The line marks that order only. Nothing is flowing through a real system.</figcaption>
-        </figure>
-        <ol class="pipeline">
-          <li class="step">
-            <h3>Raw spectrograms</h3>
-            <p>Start from time–frequency spectrograms: intensity across frequency and time, the usual picture of a radio observation. The input is archival data from radio telescopes, not a new campaign. Which files are public, complete, and worth the compute is one of the questions for reviewers.</p>
-          </li>
-          <li class="step">
-            <h3>Preprocessing</h3>
-            <p>Clean, calibrate, and put observations on a common scale before any model sees them. The usual enemies are instrumental drift and radio-frequency interference — terrestrial signals that can look interesting if you are careless.</p>
-            <ul>
-              <li>Flag radio-frequency interference.</li>
-              <li>Calibrate.</li>
-              <li>Normalize.</li>
-            </ul>
-          </li>
-          <li class="step">
-            <h3>AI anomaly detection</h3>
-            <p>Two views of one idea: learn what ordinary data looks like, then flag what does not fit. High reconstruction error, or a point outside a dense cluster, is a reason to look. It is not a discovery.</p>
-            <div class="pair">
-              <div>
-                <h4>Variational autoencoder</h4>
-                <p>A spectrogram is compressed into a smaller latent description and then rebuilt. The model is trained on the bulk of “normal” structure. “Normal” means the empirical archive, including ordinary interference, not a clean sky. Training follows Ma et al. (2023): it is cadence-aware (ON versus OFF), uses real backgrounds with synthetic labels, and holds out known dirty bands. Residual contamination of backgrounds is a known risk, not a solved one. A patch that will not rebuild cleanly is the anomaly. No such model has been trained for this proposal.</p>
-              </div>
-              <div>
-                <h4>Density clustering</h4>
-                <p>Similar signals are grouped. Points that fall outside the dense groups are kept for ranking. The notes use GLOBULAR clustering, the published method that runs HDBSCAN on turboSETI hits (Jacobson-Bell et al. 2025), and also test clustering on the learned representations. Its published trade-off, far fewer false positives but some injected signals lost, would be re-measured here.</p>
-              </div>
-            </div>
-          </li>
-          <li class="step">
-            <h3>Ranking</h3>
-            <p>Anomalies would be ordered by how unusual they are, how rarely that pattern appears, and how strong they are against the local noise. A rank decides what a person reads next. It does not decide what is true. No scores exist, because no data has been scored. Score thresholds and a false-discovery-rate rule (for example Benjamini–Hochberg, with the empirical null taken from empty and shuffled-cadence controls) would be registered before any large-archive run.</p>
-          </li>
-          <li class="step">
-            <h3>Injected-signal validation</h3>
-            <p>Known synthetic signals are planted in the raw or lightly preprocessed data before RFI flagging, detection, and ranking, so the recovery rate measures the whole chain. The pipeline earns trust only if it recovers those signals at a measured rate, and if it does not light up in the same way where nothing was planted. This test is mandatory in the proposal. It has not been built.</p>
-          </li>
-          <li class="step">
-            <h3>Archival cross-match, then a person</h3>
-            <p>The first check is an archival cross-match: the same sky position in other public datasets or epochs. New observations on a second telescope are out of scope until a partner exists. A person still reviews any high-ranking candidate.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="architecture" aria-labelledby="architecture-title">
-      <div class="wrap">
-        <p class="kicker">Architecture</p>
-        <h2 id="architecture-title">A Master Node, public archives, and GPUs that have not joined</h2>
-        <p class="section-intro">Read this as a proposal diagram. The Master Node is not running. No archive is connected. No volunteer computer has joined, and there is no client to install.</p>
-        <figure class="diagram">
-          <p class="badge">Proposed shape</p>
-          <div class="arch">
-            <div class="arch-in">
-              <p class="arch-label">In</p>
-              <div class="arch-node">
-                <h3>Public archives</h3>
-                <p>Observations and filterbank products that are already on disk, and only where the terms allow a reread.</p>
-              </div>
-              <div class="arch-node">
-                <h3>Metadata</h3>
-                <p>Which telescope, which time, which band. Without that, a hit cannot be checked.</p>
-              </div>
-              <div class="arch-node">
-                <h3>No feed connected</h3>
-                <p>Facilities that produced public radio data are sources in the literature. They are not partners here.</p>
-              </div>
-            </div>
-            <div class="arch-hub">
-              <div class="master">
-                <p class="arch-label">Not running</p>
-                <h3>Master Node</h3>
-                <p>Would hand out work, take results back, and remember which checks a candidate has passed.</p>
-              </div>
-            </div>
-            <div class="arch-out">
-              <p class="arch-label">Out</p>
-              <div class="arch-node">
-                <h3>Model weights</h3>
-                <p>Sent to the nodes, with room for feedback. No model has been trained for this.</p>
-              </div>
-              <div class="arch-node">
-                <h3>Result record</h3>
-                <p>What was processed, what failed, and the provenance of both.</p>
-              </div>
-              <div class="arch-node">
-                <h3>Human review</h3>
-                <p>A person stands in front of the word “interesting.”</p>
-              </div>
-            </div>
-            <div class="arch-floor">
-              <p class="arch-label">Compute that has not joined</p>
-              <div class="gpu-row" aria-hidden="true">
-                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
-                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
-                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
-                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
-                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
-                <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
-              </div>
-              <p>One GPU for the pilot first. Volunteer GPUs only if the pilot's numbers justify them, running small detection models on reduced data. The number of machines that have joined is zero.</p>
-            </div>
-          </div>
-          <figcaption>Arrows are intentions. Work would go out to the machines and results would come back. Neither direction has any traffic.</figcaption>
-        </figure>
-        <div class="why-grid">
-          <article class="card">
-            <h3>Public archives in</h3>
-            <p>The design assumes raw observations, filterbank products, and metadata from programs that already release data, Breakthrough Listen among them. Telescopes named on the diagram — Green Bank, Parkes, MeerKAT, and others — are examples of where such data has come from. Naming them is not a data-sharing agreement. Moving data, not computing, is expected to be the main cost: about 31 PB sits in Breakthrough Listen storage, so the design filters and reduces data at or near the archive and moves only reduced, prioritized subsets. The arithmetic is in the architecture notes.</p>
-          </article>
-          <article class="card">
-            <h3>Master Node</h3>
-            <p>A small, fault-tolerant coordination service on cloud virtual machines, with failover. It would schedule work, collect returned results, and keep the validation state of each candidate. “Resilient” here means the design wants a spare. It does not mean a cluster exists.</p>
-          </article>
-          <article class="card">
-            <h3>Volunteer GPU nodes</h3>
-            <p>If a volunteer network is used at all, the client in the notes is BOINC plus Docker, running small detection models that fit on any consumer GPU. It does not use AirLLM or layer-by-layer loading. Each work unit goes to at least two machines with different hardware, results are compared within tolerances, and planted canary signals catch faulty clients. Whether volunteers are needed is decided by the single-GPU pilot. The count of volunteers today is zero.</p>
-          </article>
+      <details class="fold" id="phase0">
+        <summary><h2>Where would it start?</h2></summary>
+        <div class="fold-body prose">
+          <p>In parallel with review, on one consumer GPU: reproduce the published turboSETI event toward HIP 100064 in Price et al. (2020), Fig. 7c, <a href="https://doi.org/10.3847/1538-3881/ab65f1">doi:10.3847/1538-3881/ab65f1</a>, from the public Data Release 1 cadence. Price later rejected the event as interference; the test is to recover the published detection, not to reopen it. Then run end-to-end injections of constant-drift and non-linear-drift signals, with go/kill criteria for the methods claim and, separately, for any volunteer network.</p>
         </div>
-      </div>
-    </section>
+      </details>
 
-    <section class="section" id="plan" aria-labelledby="plan-title">
-      <div class="wrap">
-        <p class="kicker">Phased plan</p>
-        <h2 id="plan-title">Review and a one-GPU pilot, then five phases</h2>
-        <p class="section-intro">Months are estimates, counted from the end of Phase 0.</p>
-        <ol class="rail">
-          <li class="phase">
-            <p class="when">Phase 0 · Before month 1</p>
-            <h3>Review and pilot</h3>
-            <p>In parallel with review, on one consumer GPU: reproduce the published turboSETI event toward HIP 100064 in Price et al. (2020), Fig. 7c, from the public Data Release 1 cadence (Price later rejected the event as interference; the test is to recover the published detection, not to reopen it). Then run end-to-end injections of constant-drift and non-linear-drift signals, with go/kill criteria for the methods claim and, separately, for any volunteer network.</p>
-          </li>
-          <li class="phase">
-            <p class="when">Phase 1 · Months 1–3</p>
-            <h3>Foundation</h3>
-            <p>Learn what public data can actually be read, and on what terms. Ask data holders about reducing data near the archive and agree a transfer budget. Stand up a small Master Node.</p>
-          </li>
-          <li class="phase">
-            <p class="when">Phase 2 · Months 3–6</p>
-            <h3>Pipeline</h3>
-            <p>Train a variational autoencoder and run GLOBULAR clustering on a pilot set. Build the injected-signal tests before any ranking is trusted.</p>
-          </li>
-          <li class="phase">
-            <p class="when">Phase 3 · Months 6–9</p>
-            <h3>Pilot</h3>
-            <p>Scale out the way the Phase 0 numbers chose: a small volunteer beta in containers, or rented GPUs. Compare against a single reference run. Publish the result, including a null, and the measured transfer and compute costs.</p>
-          </li>
-          <li class="phase">
-            <p class="when">Phase 4 · Months 9–18</p>
-            <h3>Reanalysis</h3>
-            <p>Only if the pilot holds: process the agreed archive in priority order, with a sensitivity measurement on every subset.</p>
-          </li>
-          <li class="phase">
-            <p class="when">Phase 5 · Ongoing</p>
-            <h3>Follow-up</h3>
-            <p>The first check is an archival cross-match: the same sky position in other public datasets or epochs. New observations on a second telescope are out of scope until a partner exists. A person still reviews any high-ranking candidate. Outcomes, including ruled-out candidates, would be published.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
+      <details class="fold" id="plan">
+        <summary><h2>If the pilot holds</h2></summary>
+        <div class="fold-body prose">
+          <p>Months are estimates, counted from the end of Phase 0.</p>
+          <p>Phase 1 · Months 1–3. Learn what public data can actually be read, and on what terms, including Breakthrough Listen public data and the original SETI@home corpus where those data are actually accessible. Ask data holders about reducing data near the archive and agree a transfer budget. Stand up a small Master Node.</p>
+          <p>Phase 2 · Months 3–6. Train the autoencoder and the clustering stage on a pilot set.</p>
+          <p>Phase 3 · Months 6–9. Scale out the way the Phase 0 numbers chose: a small volunteer beta in containers, or rented GPUs. Compare against a single reference run. Publish the pilot result and the measured transfer and compute costs.</p>
+          <p>Phase 4 · Months 9–18. Only if the pilot holds: process the agreed archive in priority order, with a sensitivity measurement on every subset.</p>
+          <p>Phase 5 · Ongoing. Publish outcomes, including ruled-out candidates.</p>
+        </div>
+      </details>
 
-    <section class="section" id="validate" aria-labelledby="validate-title">
-      <div class="wrap">
-        <p class="kicker">Trust but verify</p>
-        <h2 id="validate-title">A candidate is boring until it survives</h2>
-        <p class="section-intro">Every stage is meant to be reproducible and auditable. The proposal rejects unsubstantiated claims. Sensational findings are a failure mode, not a goal. No one should describe a hit from this effort as interesting until the checks below have happened — and those checks are a policy, not a pipeline that exists.</p>
-        <figure class="diagram">
-          <p class="badge">Illustrative — not a count</p>
+      <details class="fold" id="architecture">
+        <summary><h2>How would it be built?</h2></summary>
+        <div class="fold-body prose">
+          <p>This is a proposal diagram. The Master Node is not running, no archive is connected, no volunteer computer has joined, and there is no client to install.</p>
+          <p>Public archives would supply observations and filterbank products already on disk, only where the terms allow a reread, plus metadata — which telescope, which time, which band — without which a hit cannot be checked. Telescopes named on the diagram — Green Bank, Parkes, MeerKAT, and others — are examples of where such data has come from, not partners and not a data-sharing agreement.</p>
+          <p>Moving data, not computing, is expected to be the main cost, so the design filters and reduces data at or near the archive and moves only reduced, prioritized subsets. The arithmetic is in the architecture notes.</p>
+          <p>The Master Node would be a small coordination service on cloud virtual machines, with a spare for failover. It would schedule work, collect returned results, and keep the validation state of each candidate. “Resilient” here means the design wants a spare, not that a cluster exists.</p>
+          <p>Volunteer GPUs would be used only if the Phase 0 numbers justify them, running small detection models that fit on a consumer GPU. The client in the notes is BOINC plus Docker. It does not use AirLLM or layer-by-layer loading. Each work unit would go to at least two machines with different hardware, results would be compared within tolerances, and planted canary signals would catch faulty clients.</p>
+          <p>Model weights would be sent to the nodes, with room for feedback. A result record would keep what was processed, what failed, and the provenance of both.</p>
+          <figure class="diagram">
+            <div class="arch">
+              <div class="arch-in">
+                <p class="arch-label">In</p>
+                <div class="arch-node"><h3>Public archives</h3></div>
+                <div class="arch-node"><h3>Metadata</h3></div>
+              </div>
+              <div class="arch-hub">
+                <div class="master">
+                  <p class="arch-label">Coordination</p>
+                  <h3>Master Node</h3>
+                </div>
+              </div>
+              <div class="arch-out">
+                <p class="arch-label">Out</p>
+                <div class="arch-node"><h3>Model weights</h3></div>
+                <div class="arch-node"><h3>Result record</h3></div>
+              </div>
+              <div class="arch-floor">
+                <p class="arch-label">Volunteer GPUs</p>
+                <div class="gpu-row" aria-hidden="true">
+                  <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                  <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                  <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                  <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                  <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                  <svg viewBox="0 0 64 40"><rect x="6" y="4" width="52" height="26" rx="3" fill="none" stroke="#8fdfff"/><rect x="26" y="32" width="12" height="4" fill="#8fdfff"/><path d="M14 22l8-8 8 6 12-10" fill="none" stroke="#e7c98a" stroke-width="1.6"/></svg>
+                </div>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </details>
+
+      <details class="fold" id="funding">
+        <summary><h2>How would later work be supported?</h2></summary>
+        <div class="fold-body prose">
+          <p>No funding has been sought or raised, and no partnership exists. These are later possibilities, not a forecast, and none of them has been opened.</p>
+          <p>Private philanthropy: people and foundations that already fund basic science.</p>
+          <p>Public-science grants: a possible later application; none has been written. A long history of public funding for astronomy outreach is not support for RE-SETI, and no funding agency is a partner here.</p>
+          <p>Data access: the work needs permission to read data, or a clear public license that already grants it. No agreement has been asked for or signed.</p>
+          <p>In-kind help: sponsored cloud credits, community tooling, or advice from people who run volunteer-computing projects could matter later. Nobody has offered that help, and there is no BOINC project to join.</p>
+          <p>Precedents live in the funding note, not a budget for RE-SETI.</p>
+        </div>
+      </details>
+
+      <details class="fold" id="validate">
+        <summary><h2>How would a result be checked?</h2></summary>
+        <div class="fold-body prose">
+          <p>No candidate from this effort should be called interesting until the checks below have happened. Those checks are a policy, not a pipeline that exists. Sensational findings are a failure mode, not a goal.</p>
+          <p>No search has been run. The funnel is a metaphor for how strict the later gates are; the curves are the required shape of the injection test.</p>
           <ol class="funnel">
-            <li style="--w:100%">
-              <strong>Raw hits</strong>
-              <span>Everything bright in the spectrogram, including interference.</span>
-            </li>
-            <li style="--w:82%">
-              <strong>After RFI flags</strong>
-              <span>The lines that sit still, and the flashes that hit every channel, come out.</span>
-            </li>
-            <li style="--w:64%">
-              <strong>Model anomalies</strong>
-              <span>What is unusual, not merely loud. A nomination, not a finding.</span>
-            </li>
-            <li style="--w:46%">
-              <strong>Passes the injection test</strong>
-              <span>Only if planted signals return, and empty stretches stay quiet.</span>
-            </li>
-            <li style="--w:30%">
-              <strong>A person reads it</strong>
-              <span>Before anyone treats it as interesting. The first check is an archival cross-match, not a new observation.</span>
-            </li>
+            <li style="--w:100%"><strong>Raw hits</strong><span>Everything bright in the spectrogram, including interference.</span></li>
+            <li style="--w:82%"><strong>After RFI flags</strong><span>The lines that sit still, and the flashes that hit every channel, come out.</span></li>
+            <li style="--w:64%"><strong>Model anomalies</strong><span>What is unusual, not merely loud. A nomination, not a finding.</span></li>
+            <li style="--w:46%"><strong>Passes the injection test</strong><span>Only if planted signals return, and empty stretches stay quiet.</span></li>
+            <li style="--w:30%"><strong>A person reads it</strong><span>Before anyone treats it as interesting.</span></li>
           </ol>
-          <figcaption>Illustrative shape, not a count. No search has been run, so there is no number of hits to draw. The narrowing is a metaphor for how strict the later gates are. It is not a measurement.</figcaption>
-        </figure>
-        <div class="pillars">
-          <article class="pillar">
-            <h3>Injected signals</h3>
-            <p>Synthetic technosignatures, planted into real data by someone who knows the answer, are the calibration. Recovery rate, and the rate of false excitement on unplanted data, are the numbers that would matter.</p>
-          </article>
-          <article class="pillar">
-            <h3>Archival cross-match</h3>
-            <p>The first check is an archival cross-match: the same sky position in other public datasets or epochs. New observations on a second telescope are out of scope until a partner exists. A person still reviews any high-ranking candidate.</p>
-          </article>
-          <article class="pillar">
-            <h3>A person, before the adjective</h3>
-            <p>Human review sits in front of any decision to treat a candidate as interesting, to ask for follow-up time, or to say so in public. Automation can sort. It cannot declare.</p>
-          </article>
-          <article class="pillar">
-            <h3>The null, on the record</h3>
-            <p>If the checks wipe the slate clean, that is the result to publish. Methods, models, and negative findings would be written so someone else can rerun them. Open science here is a constraint, not a slogan.</p>
-          </article>
-        </div>
-        <figure class="diagram">
-          <p class="badge">Illustrative shapes</p>
+          <p>The upper curve should rise as planted tones get stronger; the lower curve, where nothing was planted, should stay low. If both climb, ranking is not ready. No recovery rate exists yet.</p>
           <div class="chart-scroll" tabindex="0">
-            <svg viewBox="0 0 760 430" role="img" aria-labelledby="chart-title chart-desc">
+            <svg viewBox="0 0 760 400" role="img" aria-labelledby="chart-title chart-desc">
               <title id="chart-title">Illustrative injection-recovery sketch</title>
-              <desc id="chart-desc">A conceptual chart with no measurements. One curve shows planted drifting tones being noticed more often as they get stronger. A second curve shows empty controls staying quiet. If the first curve stays flat, or the second curve rises with it, the search is not ready to rank candidates.</desc>
-              <rect width="760" height="430" fill="#0b1524"/>
+              <desc id="chart-desc">Planted tones should be noticed more often as they get stronger. Empty controls should stay low. If both curves climb, ranking is not ready. No recovery rate exists yet.</desc>
+              <rect width="760" height="400" fill="#0b1524"/>
               <g stroke="#8fdfff" stroke-opacity="0.16">
                 <line x1="92" y1="70" x2="700" y2="70"/>
                 <line x1="92" y1="150" x2="700" y2="150"/>
@@ -444,119 +241,23 @@
               <text x="36" y="190" fill="#f4f7fb" font-family="Barlow, sans-serif" font-size="16" transform="rotate(-90 36 190)" text-anchor="middle">Noticed less → noticed more</text>
               <text x="500" y="48" fill="#8fdfff" font-family="Barlow, sans-serif" font-size="15">Planted drifting tones</text>
               <text x="470" y="250" fill="#e7c98a" font-family="Barlow, sans-serif" font-size="15">Empty controls, nothing planted</text>
-              <text x="110" y="408" fill="#e7c98a" font-family="Barlow Condensed, sans-serif" font-size="15" letter-spacing="1.4">ILLUSTRATIVE — NOT A MEASUREMENT, AND NOT A RECOVERY RATE</text>
             </svg>
           </div>
           <div class="chart-stack">
-            <p><strong>Planted drifting tones.</strong> Noticed more often as the planted tone gets stronger. The signals are planted at the start of the chain, before cleaning and ranking.</p>
-            <p><strong>Empty controls.</strong> Nothing was planted, and this line stays low. If it rises with the other curve, ranking is not ready.</p>
+            <p><strong>Planted drifting tones</strong> Upper curve.</p>
+            <p><strong>Empty controls</strong> Lower curve. Nothing planted.</p>
           </div>
-          <figcaption>Illustrative. These curves are the shape of the test the proposal requires. They are not the output of a test. Planted signals go in at the start, not after ranking. No signal has been planted, and no recovery rate exists. A pipeline that is ready notices planted drifting tones once they are strong enough to matter, and stays quiet where nothing was planted. If the cyan curve stays flat, or the gold curve climbs with it, ranking is not ready. <span class="chart-scroll-hint">On a wider screen the chart is one figure; scroll it sideways if it is clipped.</span></figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section" id="funding" aria-labelledby="funding-title">
-      <div class="wrap">
-        <p class="kicker">Funding and partnerships</p>
-        <h2 id="funding-title">Avenues, not commitments</h2>
-        <p class="section-intro">No funding has been sought or raised, and no partnership exists. The paths below are possibilities from the funding note. They are not a forecast, and none of them has been opened.</p>
-        <div class="avenues">
-          <article class="avenue">
-            <h3>Private philanthropy</h3>
-            <p>People and foundations that already fund basic science are the obvious place a later request could go. The 2015 Breakthrough Listen commitment, linked above, is a historical example of philanthropic SETI funding. It belongs to that program.</p>
-          </article>
-          <article class="avenue">
-            <h3>Public-science grants</h3>
-            <p>Citizen-science and research grants are a possible later application. None has been written. A long history of public funding for astronomy outreach is not support for RE-SETI, and no funding agency is a partner here.</p>
-          </article>
-          <article class="avenue">
-            <h3>Data access, not a telescope of our own</h3>
-            <p>The work needs permission to read data, or a clear public license that already grants it. An observatory named in a diagram is a place data has historically been taken. It is not a collaborator. No agreement has been asked for or signed.</p>
-          </article>
-          <article class="avenue">
-            <h3>In-kind and open-source help</h3>
-            <p>Sponsored cloud credits, community tooling, or advice from people who run volunteer-computing projects could matter later. Data transfer, not compute, is the cost to plan for. Nobody has offered that help. There is no BOINC project to join.</p>
-          </article>
+          <p class="chart-scroll-hint">On a wider screen the chart is one figure; scroll it sideways if it is clipped.</p>
+          <p>The first check is an archival cross-match: the same sky position in other public datasets or epochs. New observations on a second telescope are out of scope until a partner exists. A person still reviews any high-ranking candidate, and sits in front of any decision to treat it as interesting, to ask for follow-up time, or to say so in public.</p>
+          <p>Methods, models, and negative findings would be written so someone else can rerun them.</p>
         </div>
-        <p class="fine">These are avenues to explore after review. Naming a kind of support is not a sponsor. Precedents and sources are in the funding note, not a budget for RE-SETI. No money has been sought or raised.</p>
-      </div>
-    </section>
-
-    <section class="section" id="documents" aria-labelledby="documents-title">
-      <div class="wrap">
-        <p class="kicker">Documents</p>
-        <h2 id="documents-title">The v1.3 archive, in the repository</h2>
-        <p class="section-intro">These are the approved documents, copied as written. Markdown opens on GitHub. Each piece also has a PDF. Short on time: start with the briefing note.</p>
-        <ul class="doc-list">
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/README.md">Document index</a>
-            <span>Where to start, and the map of the archive. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/README.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/00_Cover_Letter_and_Foreword.md">Cover letter and foreword</a>
-            <span>The letter to reviewers, and the trust-but-verify rule. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/00_Cover_Letter_and_Foreword.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/01_Full_Formal_Proposal.md">Formal proposal</a>
-            <span>Background, objectives, method, validation, and risks. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/01_Full_Formal_Proposal.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/02_Detailed_Phased_Implementation_Plans.md">Phased plan</a>
-            <span>Phase 0 review and single-GPU pilot, with go/kill criteria for volunteers, then five phases. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/02_Detailed_Phased_Implementation_Plans.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/03_Statement_of_Intent.md">Statement of intent</a>
-            <span>The commitments the work would operate under. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/03_Statement_of_Intent.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/04_Project_Concept_and_Origins.md">Concept and origins</a>
-            <span>Where the idea came from, and the barriers it tries to lower. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/04_Project_Concept_and_Origins.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/05_Technical_Architecture_Notes.md">Architecture notes</a>
-            <span>Tiered design, data transfer budget, and cross-checking results across hardware. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/05_Technical_Architecture_Notes.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/06_Funding_and_Partnerships.md">Funding and partnerships</a>
-            <span>Possible avenues only. Nothing has been sought or raised. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/06_Funding_and_Partnerships.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/07_Briefing_Note_for_Reviewers.md">Briefing note</a>
-            <span>The short plain-language summary for a first reading. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/07_Briefing_Note_for_Reviewers.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/08_Invitation_to_Review.md">Invitation to review</a>
-            <span>What is being asked, and what is not. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/08_Invitation_to_Review.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/09_References.md">References</a>
-            <span>The sources behind the figures quoted in the archive. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/09_References.pdf">PDF</a></span>
-          </li>
-          <li>
-            <a href="https://github.com/Isowix/re-seti/blob/main/docs/10_About_the_Author.md">About the author</a>
-            <span>Short biographical note. <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/10_About_the_Author.pdf">PDF</a></span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="author" aria-labelledby="author-title">
-      <div class="wrap">
-        <p class="kicker">About the author</p>
-        <h2 id="author-title">Phil Rail</h2>
-        <p>Phil Rail is the owner of Milford Machining &amp; Fabrication, based in Picton, Ontario. He has more than ten years of experience in CAD, machining, industrial design, fabrication and automation, and works in computational design with PicoGK and LEAP 71 tools.</p>
-        <p>RE-SETI is his independent proposal. He has no academic affiliation, and no formal credentials in radio astronomy or in signal processing. Those are real gaps. The project is written so that an expert in those areas can take the methods, the pilot and the data plan and put them on a firmer footing. Reviewers and collaborators with that background are invited to do so.</p>
-        <p>RE-SETI is not a project of Milford Machining &amp; Fabrication, of UC Berkeley, of Breakthrough Listen, or of the SETI Institute, and it should not be read as implying any of those affiliations.</p>
-        <p class="fine">The same note is <a href="https://github.com/Isowix/re-seti/blob/main/docs/10_About_the_Author.md">document 10</a> and its <a href="docs/pdf/10_About_the_Author.pdf">PDF</a>. Contact: <a href="mailto:hello@axiom-mmf.ca">hello@axiom-mmf.ca</a>, and <a href="https://github.com/Isowix/re-seti/issues">GitHub issues</a> (public).</p>
-      </div>
-    </section>
+      </details>
+    </div>
 
     <section class="section" id="review" aria-labelledby="review-title">
-      <div class="wrap">
-        <p class="kicker">Call for reviewers</p>
-        <h2 id="review-title">Read it, then try to break it</h2>
-        <p class="section-intro">Phil Rail is asking for a small number of people to sanity-check the idea before any further commitment. Skeptical comments are as useful as encouraging ones. Scientific or technical collaboration is welcome. You are not being asked for money, time on a telescope, or a business co-founder. A short note is enough. There is no deadline.</p>
+      <div class="wrap prose">
+        <h2 id="review-title">What is being asked?</h2>
+        <p>Phil Rail is asking for a small number of people to sanity-check the idea before any further commitment. Skeptical comments are as useful as encouraging ones. Scientific or technical collaboration is welcome. This is not a request for money, time on a telescope, funding, incorporation, or a business co-founder. A short note is enough. There is no deadline. Further work waits on that review, and on at least one other person willing to take it further. The proposal does not claim that extraterrestrial intelligence will be found.</p>
         <ol class="questions">
           <li>Is the scientific premise sound — is a modern reanalysis of existing radio SETI archives a reasonable next step?</li>
           <li>Are end-to-end injections, an archival cross-match, and human review enough to keep the effort credible?</li>
@@ -564,15 +265,41 @@
           <li>Which parts of the public archives are realistically accessible, and worth doing first?</li>
           <li>Does the framing stay clear without over-claiming, and is it clear enough to attract competent collaborators?</li>
         </ol>
-        <div class="review-panel">
-          <h3>How to respond</h3>
-          <p>Open an issue to share review feedback. Issues on this repository are public, so leave out anything you want kept private. You will not be described on this page as a reviewer or a supporter unless you explicitly agree.</p>
-          <div class="actions">
-            <a class="btn btn-gold" href="https://github.com/Isowix/re-seti/issues/new?title=Review%20feedback%20on%20RE-SETI">Open an issue to share review feedback</a>
-            <a class="btn btn-ghost" href="https://github.com/Isowix/re-seti/releases/download/v1.3/RE-SETI_Proposal_Archive_v1.3.zip">Download the full proposal archive (zip)</a>
-          </div>
-          <p class="fine">Public comments: GitHub issues (<a href="https://github.com/Isowix/re-seti/issues">https://github.com/Isowix/re-seti/issues</a>), which are public. Enabling GitHub Discussions is proposed, not yet turned on. Private comments: <a href="mailto:hello@axiom-mmf.ca">hello@axiom-mmf.ca</a>. You will not be described on this page as a reviewer or a supporter unless you explicitly agree. The <a href="https://github.com/Isowix/re-seti">repository</a> and the <a href="https://github.com/Isowix/re-seti/releases/tag/v1.3">v1.3 release</a> are the record.</p>
+        <p>Public comments: GitHub issues (<a href="https://github.com/Isowix/re-seti/issues">https://github.com/Isowix/re-seti/issues</a>), which are public. Enabling GitHub Discussions is proposed, not yet turned on. Private comments: <a href="mailto:hello@axiom-mmf.ca">hello@axiom-mmf.ca</a>. You will not be described on this page as a reviewer or a supporter unless you explicitly agree. The <a href="https://github.com/Isowix/re-seti">repository</a> and the <a href="https://github.com/Isowix/re-seti/releases/tag/v1.3">v1.3 release</a> are the record.</p>
+      </div>
+    </section>
+
+    <section class="section" id="author" aria-labelledby="author-title">
+      <div class="wrap prose">
+        <h2 id="author-title">About the author</h2>
+        <p class="stage">Phil Rail</p>
+        <p>Phil Rail is the owner of Milford Machining &amp; Fabrication, based in Picton, Ontario. He has more than ten years of experience in CAD, machining, industrial design, fabrication and automation, and works in computational design with PicoGK and LEAP 71 tools.</p>
+        <p>RE-SETI is his independent proposal. He has no academic affiliation, and no formal credentials in radio astronomy or in signal processing. Those are real gaps. The project is written so that an expert in those areas can take the methods, the pilot and the data plan and put them on a firmer footing. Reviewers and collaborators with that background are invited to do so.</p>
+        <p>The same note is <a href="https://github.com/Isowix/re-seti/blob/main/docs/10_About_the_Author.md">document 10</a> and its <a href="docs/pdf/10_About_the_Author.pdf">PDF</a>.</p>
+      </div>
+    </section>
+
+    <section class="section" id="documents" aria-labelledby="documents-title">
+      <div class="wrap">
+        <h2 id="documents-title">Documents</h2>
+        <div class="prose">
+          <p>The v1.3 archive, in the repository.</p>
+          <p>These are the approved documents, copied as written. Markdown opens on GitHub. Each piece also has a PDF. The briefing and the zip are documents, not a science client, a model, or telescope data. A copy of the briefing also sits at <a href="docs/pdf/07_Briefing_Note_for_Reviewers.pdf">docs/pdf/07_Briefing_Note_for_Reviewers.pdf</a>.</p>
         </div>
+        <ul class="doc-list">
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/README.md">Document index</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/README.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/00_Cover_Letter_and_Foreword.md">Cover letter and foreword</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/00_Cover_Letter_and_Foreword.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/01_Full_Formal_Proposal.md">Formal proposal</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/01_Full_Formal_Proposal.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/02_Detailed_Phased_Implementation_Plans.md">Phased plan</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/02_Detailed_Phased_Implementation_Plans.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/03_Statement_of_Intent.md">Statement of intent</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/03_Statement_of_Intent.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/04_Project_Concept_and_Origins.md">Concept and origins</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/04_Project_Concept_and_Origins.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/05_Technical_Architecture_Notes.md">Architecture notes</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/05_Technical_Architecture_Notes.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/06_Funding_and_Partnerships.md">Funding and partnerships</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/06_Funding_and_Partnerships.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/07_Briefing_Note_for_Reviewers.md">Briefing note</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/07_Briefing_Note_for_Reviewers.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/08_Invitation_to_Review.md">Invitation to review</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/08_Invitation_to_Review.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/09_References.md">References</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/09_References.pdf">PDF</a></li>
+          <li><a href="https://github.com/Isowix/re-seti/blob/main/docs/10_About_the_Author.md">About the author</a> <a href="https://github.com/Isowix/re-seti/blob/main/docs/pdf/10_About_the_Author.pdf">PDF</a></li>
+        </ul>
       </div>
     </section>
   </main>
