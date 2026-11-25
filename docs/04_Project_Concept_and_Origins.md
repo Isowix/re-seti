@@ -1,6 +1,8 @@
 # Project Concept and Origins
 
-*RE-SETI proposal archive v1.2.1 · 23 November 2026 · Prepared by Phil Rail*
+*RE-SETI proposal archive v1.3 · 24 November 2026 · Prepared by Phil Rail*
+
+> **Stage: proposal in review.** Seeking reviewers and scientific or technical collaborators, not a business co-founder.
 
 ## Where the idea came from
 
@@ -23,7 +25,7 @@ The question behind this proposal is whether today's tools change that equation.
 | Personnel | Automation and AI agents for routine operations; people kept for review and decisions |
 | Compute cost | One GPU for the pilot; rented GPUs or, if the pilot's numbers justify it, volunteer computers through BOINC |
 | Data cost (the dominant cost) | Start with public archives; filter and reduce data at or near the archive; move only reduced, prioritized subsets |
-| Credibility | Injected-signal testing, human review, independent confirmation, published null results |
+| Credibility | End-to-end injected-signal testing, registered FDR, archival cross-match, human review, published null results |
 | Vendor lock-in | Open-source tools; no dependence on any single AI model or provider |
 
 ## What it is not
